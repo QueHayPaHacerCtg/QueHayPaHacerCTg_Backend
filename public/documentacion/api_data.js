@@ -4,7 +4,7 @@ define({ "api": [
     "url": "/api/usuarios/{Numero:id}?token=AquiVaElToken",
     "title": "",
     "name": "quehaypahacerctg",
-    "group": "Actualizaci_n_de_usuario",
+    "group": "Actualizacion_de_usuario",
     "description": "<p>Ingresas la ID de la persona que quieres modificar y el token que te valide como usuario logeado</p>",
     "examples": [
       {
@@ -239,7 +239,7 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Actualizaci_n_de_usuario"
+    "groupTitle": "Actualizacion_de_usuario"
   },
   {
     "type": "DELETE",
@@ -303,7 +303,7 @@ define({ "api": [
     "url": "/api/login",
     "title": "",
     "name": "quehaypahacerctg",
-    "group": "Login_de_aplicaci_n",
+    "group": "Login_de_aplicacion",
     "description": "<p>login del usuario para obtener su token de sesión</p>",
     "examples": [
       {
@@ -435,7 +435,7 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Login_de_aplicaci_n"
+    "groupTitle": "Login_de_aplicacion"
   },
   {
     "type": "GET",
@@ -618,7 +618,7 @@ define({ "api": [
     "url": "/api/plantilla/",
     "title": "",
     "name": "quehaypahacerctg",
-    "group": "Plantilla_Documentaci_n",
+    "group": "Plantilla_Documentacion",
     "description": "<p>Aquí se explica que hace el recurso con varias lineas</p>",
     "examples": [
       {
@@ -669,7 +669,7 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Plantilla_Documentaci_n"
+    "groupTitle": "Plantilla_Documentacion"
   },
   {
     "type": "POST",

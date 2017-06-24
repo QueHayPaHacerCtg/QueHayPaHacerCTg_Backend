@@ -20,7 +20,7 @@ Route::get("/",function(){
 /**
  * @api {Method} /api/plantilla/
  * @apiName quehaypahacerctg
- * @apiGroup Plantilla Documentación
+ * @apiGroup Plantilla Documentacion
  * @apiDescription Aquí se explica que hace el recurso
  * con varias lineas
  * 
@@ -140,7 +140,7 @@ Route::resource("/usuarios","UsuariosController");
 /**
  * @api {PUT} /api/usuarios/{Numero:id}?token=AquiVaElToken
  * @apiName quehaypahacerctg
- * @apiGroup Actualización de usuario
+ * @apiGroup Actualizacion de usuario
  * @apiDescription Ingresas la ID de la persona que quieres modificar y el token 
  * que te valide como usuario logeado
  *
@@ -270,7 +270,7 @@ Route::resource("/usuarios","UsuariosController");
 /**
  * @api {POST} /api/login 
  * @apiName quehaypahacerctg
- * @apiGroup Login de aplicación
+ * @apiGroup Login de aplicacion
  * @apiDescription login del usuario para obtener su token de sesión
  *
  * @apiExample Ejemplo de Uso:
