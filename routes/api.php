@@ -18,10 +18,38 @@ Route::get("/",function(){
 });
 
 /**
- * @api {GET} /api/usuarios?token=AquiVaElToken Optener Todos los usuarios registrados
+ * @api {Method} /api/plantilla/
  * @apiName quehaypahacerctg
- * @apiGroup Consultas
+ * @apiGroup Plantilla Documentacion
+ * @apiDescription Aqui se explica que hace el recurso
+ * con varias lineas?
+ * o no?
+ * 
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{TIPO:parametro_get}
+ * 
+ * @apiParam {string} Parametro Parametro (POST|PUT|DELECT) en la peticion
+ * 
+ * @apiSuccessExample Ejemplo de Exito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          "mensaje":"Esto es el ejemplo de todo OK"
+ *      }
+ * 
+ * @apiError Error_1 con codigo <code>4xx</code> y una corta explicacion.
+ * @apiError Error_2 con codigo <code>4xx</code> y una explicacion.
+ */
+
+/**
+ * @api {GET} /api/usuarios?token=AquiVaElToken
+ * @apiName quehaypahacerctg
+ * @apiGroup Obtener Todos los usuarios
+ * @apiDescription Optener Todos los usuarios registrados, usando el token para saber que es un
+ * usuario logeado, y autorizado para acceder a ese recurso
  *
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios?token=uuhghhs$%kskds.$fdfdffdfd
+ * 
  * @apiParam {string} Token Token de la session
  * 
  * @apiSuccessExample Success-Response:
@@ -43,20 +71,21 @@ Route::get("/",function(){
  *      }
  *     ]
  *
- * @apiError Error interno con el código <code>500</code>.
+ * @apiError TokenInvalido Error colcoando el codigo<code>403</code>.indicando 
+ * que el token no es valido
+ * @apiError InternalError Error interno con codigo <code>500</code>
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 500 Internal Error
- *     {
- *      "mensaje de error"
- *     }
  */
 
 /**
- * @api {POST} /api/usuarios Registro de Usuario
+ * @api {POST} /api/usuarios
  * @apiName quehaypahacerctg
- * @apiGroup Registro
+ * @apiGroup Registro de usuario
+ * @apiDescription Por donde entran toda las peticiones para obtener un usuario en la API, no necesita Token
  *
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios
+ * 
  * @apiParam {string} nombre
  * @apiParam {string} apellido
  * @apiParam {string} cedula
@@ -100,24 +129,24 @@ Route::get("/",function(){
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError Error Interno, algun dato no es correcto o falta un dato
+ * @apiError InternalError Error Interno con codigo <code>500</code>
+ * @apiError ErrorDeParametros Usualmente relacionado por ingresar datos de una 
+ * persona ya registrada tiene codigo <code>501</code>
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 500 Internal Error
- *     {
- *      "No creo el usuario"
- *     }
  */
 
 Route::resource("/usuarios","UsuariosController");
 
 /**
- * @api {PUT} /api/usuarios/{id}?token=AquiVaElToken Actualizacion de usuarios
+ * @api {PUT} /api/usuarios/{Numero:id}?token=AquiVaElToken
  * @apiName quehaypahacerctg
- * @apiGroup Actualizaciones
+ * @apiGroup Actualizar usuario
+ * @apiDescription Ingresas la ID de la persona que quieres modificar y el token 
+ * que te valide como usuario logeado
  *
- * @apiParam {Number} Token Token de la session
- * @apiParam {Number} ID del usuario a modificar
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff
+ * 
  * @apiParam {string} nombre
  * @apiParam {string} apellido
  * @apiParam {string} cedula
@@ -165,22 +194,22 @@ Route::resource("/usuarios","UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError UserNotFound The id of the User was not found.
+ * @apiError UsuarioNoEncontrado El usuario que desea modificar no existe <code>404</code>
+ * @apiError UsuarioNoActualizado El usuario que desea modificar no es modificable <code>501</code>
+ * @apiError InternalError error con codigo <code>500</code>
+ * @apiError TokenInvalido El token suministrado no es valido <code>403</code>.
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 User Not Found
- *     {
- *       "UserNotFound"
- *     }
  */
 
 /**
- * @api {get} /api/usuarios/{id}?token=AquiVaElToken Obtener un usuario especifico
+ * @api {get} /api/usuarios/{Numero:id}?token=AquiVaElToken
  * @apiName quehaypahacerctg
- * @apiGroup Consulta
+ * @apiGroup Obtener un usuario
+ * @apiDescription Se ingresa la id del usuario que deseamos obtener, y el token
+ * que nos valide como usuario logrado
  *
- * @apiParam {String} Token Token de session
- * @apiParam {Number} ID del usuario
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/854?token=ddffef&fsfdsf/ffdsf
  *
  * @apiSuccess {Number} ID
  * @apiSuccess {string} nombre
@@ -209,45 +238,47 @@ Route::resource("/usuarios","UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError UserNotFound The id of the User was not found.
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "UserNotFound"
- *     }
+ * @apiError UsuarioNoEncontrado Codigo <code>404</code> no se encontro el usuario
+ * @apiError TokenNoValido El token suministrado no es valido <code>403</code>
+ * @apiError InternalError error con codigo <code>500</code>
+ * 
  */
 
 /**
- * @api {DELETE} /api/usuarios/{id}?token=AquiVaElToken Eliminar a un usuario
+ * @api {DELETE} /api/usuarios/{Numero:id}?token=AquiVaElToken 
  * @apiName quehaypahacerctg
- * @apiGroup Eliminaciones
+ * @apiGroup Eliminar a un usuario
+ * @apiDescription Manda la id del usuario que deseamos eliminar del sistema
+ * y el token que nos valida como usuario logeado
  *
- * @apiParam {string} Token Token de la session
- * @apiParam {Number} ID ID del usuario
- * 
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/357?token=ddffef&fsfdsf/ffdsf
+ *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *      {
  *          "Usuario Eliminado"
  *      }
  *
- * @apiError Error interno <code>500</code>.
+ * @apiError InternalError Error interno<code>500</code>.
+ * @apiError UsuarioNoEncontrado El usuario a eliminar no fue encontrado <code>404</code>.
+ * @apiError TokenInvalido El token suministrado no es valido <code>403</code>.
+ * @apiError ErrorDeParametros Los datos suministrados no sn validos y generaron un error<code>501</code>.
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 500 Internal Error
- *     {
- *      "No se elimino el usuario, verifique los datos"
- *     }
  */
 
 /**
- * @api {POST} /api/login Login de aplicacion
+ * @api {POST} /api/login 
  * @apiName quehaypahacerctg
- * @apiGroup Autenticacion
+ * @apiGroup Login de aplicacion
+ * @apiDescription Por donde se debe autenticar el usuario, y obtener su token 
+ * de session
  *
- * @apiParam {String} user
- * @apiParam {String} pass
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/login
+ *
+ * @apiParam {String} user usuario resgistrado en sistema
+ * @apiParam {String} pass constraseña del usuario
  *
  * @apiSuccess {String} Token token de la session
  * @apiSuccess {Integer} id
@@ -279,13 +310,9 @@ Route::resource("/usuarios","UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError Error de Autenticacion
+ * @apiError InternalError Error interno <code>500</code>.
+ * @apiError LoginInvalido Cuando las credenciales no son validas ocurre este error<code>403</code>.
  *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 403 Acceso denegado
- *     {
- *       "Error de autenticacion"
- *     }
  */
 
 Route::post("login","UsuariosController@login");

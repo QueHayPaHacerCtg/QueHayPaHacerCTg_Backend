@@ -5,19 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-class UsuariosController extends Controller
-{
+class UsuariosController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         //optener los usuarios
-        if(!User::validarToken($request->token)){
+        if (!User::validarToken($request->token)) {
             //no tiene un token valido lo mandamos a la mierda
-            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo",403);
+            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
         }
         return response()->json(User::all());
     }
@@ -27,8 +26,7 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //deshabilitado
         return response()->json('opción no autorizada', 423);
     }
@@ -39,16 +37,14 @@ class UsuariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //Creacion del usuario
         $usuario = User::crearUsuario($request);
-        if($usuario){
+        if ($usuario) {
             return response()->json($usuario);
-        }else{
-            return response()->json("Usuario no creado, verifique los datos",500);
+        } else {
+            return response()->json("Usuario no creado, verifique los datos", 501);
         }
-        
     }
 
     /**
@@ -57,14 +53,17 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
-    {
+    public function show(Request $request, $id) {
         //
-        if(!User::validarToken($request->token)){
+        if (!User::validarToken($request->token)) {
             //no tiene un token valido lo mandamos a la mierda
-            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo",403);
+            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
         }
-        return response()->json(User::find($id));
+        $usuario = User::find($id);
+        if (!is_object($usuario)) {
+            return response()->json("Usuario no encontrado", 404);
+        }
+        return response()->json($usuario);
     }
 
     /**
@@ -73,8 +72,7 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
         return response()->json('opción no autorizada', 423);
     }
@@ -86,13 +84,19 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $usuario = User::find($id);   
-        if($usuario->actualizar($request)){
+    public function update(Request $request, $id) {
+        $usuario = User::find($id);
+        if (!is_object($usuario)) {
+            return response()->json("Usuario no encontrado", 404);
+        }
+        if (!User::validarToken($request->token)) {
+            //no tiene un token valido lo mandamos a la mierda
+            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
+        }
+        if ($usuario->actualizar($request)) {
             return response()->json($usuario);
-        }else{
-            return response()->json("Usuario no actualizado, verifique los datos",500);
+        } else {
+            return response()->json("Usuario no actualizado, verifique los datos", 501);
         }
     }
 
@@ -102,24 +106,32 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy(Request $request, $id) {
         //
-        if(User::destroy($id)){
+        $user = User::find($id);
+        if (!is_object($user)) {
+            return response()->json("Usuario no encontrado", 404);
+        }
+        if (!User::validarToken($request->token)) {
+            //no tiene un token valido lo mandamos a la mierda
+            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
+        }
+        if (User::destroy($id)) {
             return response()->json("Usuario Eliminado con exito");
-        }else{
-            return response()->json("Error al eliminar el usuario, verifique la id",500);
+        } else {
+            return response()->json("Error al eliminar el usuario, verifique la id", 501);
         }
     }
-    
+
     public function login(Request $request) {
-        $respuesta = User::autenticar($request->user,$request->pass);
-        if($respuesta){
+        $respuesta = User::autenticar($request->user, $request->pass);
+        if ($respuesta) {
             //Login correcto
             return response()->json($respuesta);
-        }else{
+        } else {
             //error de autenticar
-            return response()->json("Error de autenticacion",403);
+            return response()->json("Error de autenticacion", 403);
         }
     }
+
 }

@@ -1,27 +1,21 @@
 define({ "api": [
   {
     "type": "PUT",
-    "url": "/api/usuarios/{id}?token=AquiVaElToken",
-    "title": "Actualizacion de usuarios",
+    "url": "/api/usuarios/{Numero:id}?token=AquiVaElToken",
+    "title": "",
     "name": "quehaypahacerctg",
-    "group": "Actualizaciones",
+    "group": "Actualizar_usuario",
+    "description": "<p>Ingresas la ID de la persona que quieres modificar y el token que te valide como usuario logeado</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff",
+        "type": "json"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "Token",
-            "description": "<p>Token de la session</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "ID",
-            "description": "<p>del usuario a modificar</p>"
-          },
           {
             "group": "Parameter",
             "type": "string",
@@ -219,29 +213,105 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the User was not found.</p>"
+            "field": "UsuarioNoEncontrado",
+            "description": "<p>El usuario que desea modificar no existe <code>404</code></p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UsuarioNoActualizado",
+            "description": "<p>El usuario que desea modificar no es modificable <code>501</code></p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalError",
+            "description": "<p>error con codigo <code>500</code></p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TokenInvalido",
+            "description": "<p>El token suministrado no es valido <code>403</code>.</p>"
           }
         ]
-      },
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/api.php",
+    "groupTitle": "Actualizar_usuario"
+  },
+  {
+    "type": "DELETE",
+    "url": "/api/usuarios/{Numero:id}?token=AquiVaElToken",
+    "title": "",
+    "name": "quehaypahacerctg",
+    "group": "Eliminar_a_un_usuario",
+    "description": "<p>Manda la id del usuario que deseamos eliminar del sistema y el token que nos valida como usuario logeado</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/357?token=ddffef&fsfdsf/ffdsf",
+        "type": "json"
+      }
+    ],
+    "success": {
       "examples": [
         {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 User Not Found\n{\n  \"UserNotFound\"\n}",
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n {\n     \"Usuario Eliminado\"\n }",
           "type": "json"
         }
       ]
     },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalError",
+            "description": "<p>Error interno<code>500</code>.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UsuarioNoEncontrado",
+            "description": "<p>El usuario a eliminar no fue encontrado <code>404</code>.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TokenInvalido",
+            "description": "<p>El token suministrado no es valido <code>403</code>.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ErrorDeParametros",
+            "description": "<p>Los datos suministrados no sn validos y generaron un error<code>501</code>.</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Actualizaciones"
+    "groupTitle": "Eliminar_a_un_usuario"
   },
   {
     "type": "POST",
     "url": "/api/login",
-    "title": "Login de aplicacion",
+    "title": "",
     "name": "quehaypahacerctg",
-    "group": "Autenticacion",
+    "group": "Login_de_aplicacion",
+    "description": "<p>Por donde se debe autenticar el usuario, y obtener su token de session</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/login",
+        "type": "json"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -250,14 +320,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "user",
-            "description": ""
+            "description": "<p>usuario resgistrado en sistema</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "pass",
-            "description": ""
+            "description": "<p>constraseña del usuario</p>"
           }
         ]
       }
@@ -351,49 +421,94 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Error",
-            "description": "<p>de Autenticacion</p>"
+            "field": "InternalError",
+            "description": "<p>Error interno <code>500</code>.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "LoginInvalido",
+            "description": "<p>Cuando las credenciales no son validas ocurre este error<code>403</code>.</p>"
           }
         ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 403 Acceso denegado\n{\n  \"Error de autenticacion\"\n}",
-          "type": "json"
-        }
-      ]
+      }
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Autenticacion"
+    "groupTitle": "Login_de_aplicacion"
   },
   {
-    "type": "get",
-    "url": "/api/usuarios/{id}?token=AquiVaElToken",
-    "title": "Obtener un usuario especifico",
+    "type": "GET",
+    "url": "/api/usuarios?token=AquiVaElToken",
+    "title": "",
     "name": "quehaypahacerctg",
-    "group": "Consulta",
+    "group": "Obtener_Todos_los_usuarios",
+    "description": "<p>Optener Todos los usuarios registrados, usando el token para saber que es un usuario logeado, y autorizado para acceder a ese recurso</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios?token=uuhghhs$%kskds.$fdfdffdfd",
+        "type": "json"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "Token",
-            "description": "<p>Token de session</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "ID",
-            "description": "<p>del usuario</p>"
+            "description": "<p>Token de la session</p>"
           }
         ]
       }
     },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n \"id\":1,\n \"created_at\":\"2017-06-14 00:00:00\",\n \"updated_at\":\"2017-06-23 00:00:00\",\n \"user\":\"LuisPlata\",\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TokenInvalido",
+            "description": "<p>Error colcoando el codigo<code>403</code>.indicando que el token no es valido</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalError",
+            "description": "<p>Error interno con codigo <code>500</code></p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/api.php",
+    "groupTitle": "Obtener_Todos_los_usuarios"
+  },
+  {
+    "type": "get",
+    "url": "/api/usuarios/{Numero:id}?token=AquiVaElToken",
+    "title": "",
+    "name": "quehaypahacerctg",
+    "group": "Obtener_un_usuario",
+    "description": "<p>Se ingresa la id del usuario que deseamos obtener, y el token que nos valide como usuario logrado</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/854?token=ddffef&fsfdsf/ffdsf",
+        "type": "json"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -476,96 +591,51 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the User was not found.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "routes/api.php",
-    "groupTitle": "Consulta"
-  },
-  {
-    "type": "GET",
-    "url": "/api/usuarios?token=AquiVaElToken",
-    "title": "Optener Todos los usuarios registrados",
-    "name": "quehaypahacerctg",
-    "group": "Consultas",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Token",
-            "description": "<p>Token de la session</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[\n {\n \"id\":1,\n \"created_at\":\"2017-06-14 00:00:00\",\n \"updated_at\":\"2017-06-23 00:00:00\",\n \"user\":\"LuisPlata\",\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\"\n }\n]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Error",
-            "description": "<p>interno con el código <code>500</code>.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 500 Internal Error\n{\n \"mensaje de error\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "routes/api.php",
-    "groupTitle": "Consultas"
-  },
-  {
-    "type": "DELETE",
-    "url": "/api/usuarios/{id}?token=AquiVaElToken",
-    "title": "Eliminar a un usuario",
-    "name": "quehaypahacerctg",
-    "group": "Eliminaciones",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Token",
-            "description": "<p>Token de la session</p>"
+            "field": "UsuarioNoEncontrado",
+            "description": "<p>Codigo <code>404</code> no se encontro el usuario</p>"
           },
           {
-            "group": "Parameter",
-            "type": "Number",
+            "group": "Error 4xx",
             "optional": false,
-            "field": "ID",
-            "description": "<p>ID del usuario</p>"
+            "field": "TokenNoValido",
+            "description": "<p>El token suministrado no es valido <code>403</code></p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalError",
+            "description": "<p>error con codigo <code>500</code></p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/api.php",
+    "groupTitle": "Obtener_un_usuario"
+  },
+  {
+    "type": "Method",
+    "url": "/api/plantilla/",
+    "title": "",
+    "name": "quehaypahacerctg",
+    "group": "Plantilla_Documentacion",
+    "description": "<p>Aqui se explica que hace el recurso con varias lineas? o no?</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{TIPO:parametro_get}",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "Parametro",
+            "description": "<p>Parametro (POST|PUT|DELECT) en la peticion</p>"
           }
         ]
       }
@@ -573,8 +643,8 @@ define({ "api": [
     "success": {
       "examples": [
         {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n {\n     \"Usuario Eliminado\"\n }",
+          "title": "Ejemplo de Exito:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"mensaje\":\"Esto es el ejemplo de todo OK\"\n}",
           "type": "json"
         }
       ]
@@ -585,29 +655,36 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Error",
-            "description": "<p>interno <code>500</code>.</p>"
+            "field": "Error_1",
+            "description": "<p>con codigo <code>4xx</code> y una corta explicacion.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Error_2",
+            "description": "<p>con codigo <code>4xx</code> y una explicacion.</p>"
           }
         ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 500 Internal Error\n{\n \"No se elimino el usuario, verifique los datos\"\n}",
-          "type": "json"
-        }
-      ]
+      }
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Eliminaciones"
+    "groupTitle": "Plantilla_Documentacion"
   },
   {
     "type": "POST",
     "url": "/api/usuarios",
-    "title": "Registro de Usuario",
+    "title": "",
     "name": "quehaypahacerctg",
-    "group": "Registro",
+    "group": "Registro_de_usuario",
+    "description": "<p>Por donde entran toda las peticiones para obtener un usuario en la API, no necesita Token</p>",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios",
+        "type": "json"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -794,21 +871,20 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Error",
-            "description": "<p>Interno, algun dato no es correcto o falta un dato</p>"
+            "field": "InternalError",
+            "description": "<p>Error Interno con codigo <code>500</code></p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ErrorDeParametros",
+            "description": "<p>Usualmente relacionado por ingresar datos de una persona ya registrada tiene codigo <code>501</code></p>"
           }
         ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 500 Internal Error\n{\n \"No creo el usuario\"\n}",
-          "type": "json"
-        }
-      ]
+      }
     },
     "version": "0.0.0",
     "filename": "routes/api.php",
-    "groupTitle": "Registro"
+    "groupTitle": "Registro_de_usuario"
   }
 ] });
