@@ -9,7 +9,7 @@ class User extends Model
 {
     protected $table = "usuarios";
     //datos ocultos
-    //protected $hidden = ['pass',"longitud","latitud","user"];
+    protected $hidden = ['pass',"longitud","latitud","user"];
     
     public static function validarToken($token){
         $usuario = User::where("token",$token)->first();
