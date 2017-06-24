@@ -14,7 +14,7 @@ class User extends Model
     public static function validarToken($token){
         $token = str_replace("\\","",$token);
         $usuario = User::where("token",$token)->first();
-        dd($token);
+        
         if(is_object($usuario)){
             //Es porque es valido
             return TRUE;
