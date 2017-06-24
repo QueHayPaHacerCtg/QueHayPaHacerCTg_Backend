@@ -13,6 +13,7 @@ class User extends Model
     
     public static function validarToken($token){
         $usuario = User::where("token",$token)->first();
+        dd($usuario->token."--".$token);
         if(is_object($usuario)){
             //Es porque es valido
             return TRUE;
