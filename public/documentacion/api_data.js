@@ -370,7 +370,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/usuarios/{id}?token=AquiVaElToken",
+    "url": "/api/usuarios/{id}?token=AquiVaElToken",
     "title": "Obtener un usuario especifico",
     "name": "quehaypahacerctg",
     "group": "Consulta",

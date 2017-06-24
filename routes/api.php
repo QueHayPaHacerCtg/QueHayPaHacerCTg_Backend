@@ -175,7 +175,7 @@ Route::resource("/usuarios","UsuariosController");
  */
 
 /**
- * @api {get} /usuarios/{id}?token=AquiVaElToken Obtener un usuario especifico
+ * @api {get} /api/usuarios/{id}?token=AquiVaElToken Obtener un usuario especifico
  * @apiName quehaypahacerctg
  * @apiGroup Consulta
  *
