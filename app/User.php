@@ -12,6 +12,7 @@ class User extends Model
     protected $hidden = ['pass',"longitud","latitud","user"];
     
     public static function validarToken($token){
+        $token = str_replace("\\","",$token);
         $usuario = User::where("token",$token)->first();
         dd($token);
         if(is_object($usuario)){
