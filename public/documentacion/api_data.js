@@ -6,6 +6,7 @@ define({ "api": [
     "name": "quehaypahacerctg",
     "group": "Actualizacion_de_usuario",
     "description": "<p>Ingresas la ID de la persona que quieres modificar y el token que te valide como usuario logeado</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -237,7 +238,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Actualizacion_de_usuario"
   },
@@ -248,6 +248,7 @@ define({ "api": [
     "name": "quehaypahacerctg",
     "group": "Eliminar_a_un_usuario",
     "description": "<p>Manda la id del usuario que deseamos eliminar del sistema y el token que nos válida como usuario logeado</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -294,7 +295,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Eliminar_a_un_usuario"
   },
@@ -305,6 +305,7 @@ define({ "api": [
     "name": "quehaypahacerctg",
     "group": "Login_de_aplicacion",
     "description": "<p>login del usuario para obtener su token de sesión</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -433,55 +434,41 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Login_de_aplicacion"
   },
   {
     "type": "GET",
-    "url": "/api/usuarios?token=AquiVaElToken",
+    "url": "/api/usuarios",
     "title": "",
     "name": "quehaypahacerctg",
     "group": "Obtener_Todos_los_usuarios",
     "description": "<p>Optener Todos los usuarios registrados, usando el token para saber que es un usuario logeado, y autorizado para acceder a ese recurso</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios?token=uuhghhs$%kskds.$fdfdffdfd",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios",
         "type": "json"
       }
     ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Token",
-            "description": "<p>Token de la sessión</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[\n {\n \"id\":1,\n \"created_at\":\"2017-06-14 00:00:00\",\n \"updated_at\":\"2017-06-23 00:00:00\",\n \"user\":\"LuisPlata\",\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\"\n }\n]",
+          "content": "HTTP/1.1 200 OK\n[\n {\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\",\n \"id\":1\n }\n]",
           "type": "json"
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "TokenInvalido",
-            "description": "<p>Error con código<code>403</code>. Indicando que el token no es válido</p>"
-          },
           {
             "group": "Error 4xx",
             "optional": false,
@@ -491,7 +478,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Obtener_Todos_los_usuarios"
   },
@@ -502,6 +488,7 @@ define({ "api": [
     "name": "quehaypahacerctg",
     "group": "Obtener_un_usuario",
     "description": "<p>Se ingresa la id del usuario que deseamos obtener, y el token que nos valide como usuario logrado</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -609,7 +596,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Obtener_un_usuario"
   },
@@ -620,6 +606,7 @@ define({ "api": [
     "name": "quehaypahacerctg",
     "group": "Plantilla_Documentacion",
     "description": "<p>Aquí se explica que hace el recurso con varias lineas</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -649,6 +636,11 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "EjemploSoloParaBusquedas"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
@@ -667,7 +659,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Plantilla_Documentacion"
   },
@@ -677,7 +668,8 @@ define({ "api": [
     "title": "",
     "name": "quehaypahacerctg",
     "group": "Registro_de_usuario",
-    "description": "<p>Por donde entran toda las peticiones para obtener un usuario en la API, no necesita Token</p>",
+    "description": "<p>Ruta para registrar un usuario en sistema para posteriormente hacer login para optener un token</p>",
+    "version": "0.1.0",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -707,7 +699,7 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "cedula",
-            "description": ""
+            "description": "<p><strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
@@ -735,21 +727,21 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "movil",
-            "description": ""
+            "description": "<p><strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "email",
-            "description": ""
+            "description": "<p><strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "user",
-            "description": ""
+            "description": "<p><strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
@@ -883,7 +875,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
     "filename": "routes/api.php",
     "groupTitle": "Registro_de_usuario"
   }

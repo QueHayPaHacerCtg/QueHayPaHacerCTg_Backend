@@ -11,6 +11,21 @@ class User extends Model
     //datos ocultos
     protected $hidden = ['pass',"longitud","latitud","user"];
     
+    public static function getAll(){
+        return User::select(
+                "nombre",
+                "apellido",
+                "cedula",
+                "fecha_nacimiento",
+                "sexo",
+                "telefono",
+                "movil",
+                "email",
+                "id"
+                )
+                ->get();
+    }
+    
     public static function validarToken($token){
         $token = str_replace("\\","",$token);
         $usuario = User::where("token",$token)->first();
@@ -34,10 +49,11 @@ class User extends Model
                 $usuario->save();
                 return $usuario->token;
             }else{
-                return FALSE;
+                throw new Exception("Contraseña Invalida");
             }   
-        }catch(\Exception $e){
-            dd($e);
+        }catch(Exception $e){
+            //dd($e);
+            return FALSE;
         }
     }
     
@@ -65,9 +81,9 @@ class User extends Model
             if($usuario->save()){
                 return $usuario;
             }else{
-                throw new \Exception("No se guardo el usuario");
+                throw new Exception("No se guardo el usuario");
             }
-        }catch(\Exception $e){
+        }catch(Exception $e){
             return False;
         }
     }

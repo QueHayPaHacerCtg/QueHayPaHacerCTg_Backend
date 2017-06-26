@@ -22,6 +22,7 @@ Route::get("/",function(){
  * @apiGroup Plantilla Documentacion
  * @apiDescription Aquí se explica que hace el recurso
  * con varias lineas
+ * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{Tipo:parametro_get}
@@ -34,30 +35,28 @@ Route::get("/",function(){
  *          "mensaje":"Esto es el ejemplo de todo OK"
  *      }
  * 
+ * @apiSampleRequest EjemploSoloParaBusquedas
+ * 
  * @apiError Error_1 con código <code>4xx</code> y una corta explicación.
  * @apiError Error_2 con código <code>4xx</code> y una explicación.
  */
 
 /**
- * @api {GET} /api/usuarios?token=AquiVaElToken
+ * @api {GET} /api/usuarios
  * @apiName quehaypahacerctg
  * @apiGroup Obtener Todos los usuarios
  * @apiDescription Optener Todos los usuarios registrados, usando el token para saber que es un
  * usuario logeado, y autorizado para acceder a ese recurso
+ * @apiVersion 0.1.0
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/index.php/api/usuarios?token=uuhghhs$%kskds.$fdfdffdfd
+ * http://quehaypahacer.nabu.com.co/index.php/api/usuarios
  * 
- * @apiParam {string} Token Token de la sessión
  * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     [
  *      {
- *      "id":1,
- *      "created_at":"2017-06-14 00:00:00",
- *      "updated_at":"2017-06-23 00:00:00",
- *      "user":"LuisPlata",
  *      "nombre":"Luis Enrique",
  *      "apellido":"Plata Osorio",
  *      "cedula":"1143346134",
@@ -65,12 +64,13 @@ Route::get("/",function(){
  *      "sexo":"Hombre",
  *      "telefono":"56510386",
  *      "movil":"3015086264",
- *      "email":"www.luisplata@gmail.com"
+ *      "email":"www.luisplata@gmail.com",
+ *      "id":1
  *      }
  *     ]
  *
- * @apiError TokenInvalido Error con código<code>403</code>. Indicando 
- * que el token no es válido
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/usuarios
+ * 
  * @apiError InternalError Error interno con código <code>500</code>
  *
  */
@@ -79,25 +79,25 @@ Route::get("/",function(){
  * @api {POST} /api/usuarios
  * @apiName quehaypahacerctg
  * @apiGroup Registro de usuario
- * @apiDescription Por donde entran toda las peticiones para obtener un usuario 
- * en la API, no necesita Token
+ * @apiDescription Ruta para registrar un usuario en sistema para posteriormente hacer
+ * login y optener un token
+ * @apiVersion 0.1.0
  *
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/usuarios
  * 
- * @apiParam {string} nombre
- * @apiParam {string} apellido
- * @apiParam {string} cedula
+ * @apiParam {string} nombre MaxLength:190
+ * @apiParam {string} apellido MaxLength:190
+ * @apiParam {string} cedula MaxLength:50 **Unique**
  * @apiParam {date} fecha_nacimiento format("YYYY-MM-DD")
  * @apiParam {string} sexo permitidos: "Hombre", "Mujer"
- * @apiParam {string} telefono
- * @apiParam {string} movil
- * @apiParam {string} email
- * @apiParam {string} nombre
- * @apiParam {string} user 
- * @apiParam {string} pass 
- * @apiParam {string} longitud Opcional
- * @apiParam {string} latitud Opcional
+ * @apiParam {string} telefono MaxLength:50
+ * @apiParam {string} movil MaxLength:50 **Unique**
+ * @apiParam {string} email MaxLength:190 **Unique**
+ * @apiParam {string} user MaxLength:100 **Unique**
+ * @apiParam {string} pass MaxLength:190
+ * @apiParam {string} longitud MaxLength:190 Opcional
+ * @apiParam {string} latitud MaxLength:190 Opcional
  * 
  * @apiSuccess {Number} ID
  * @apiSuccess {string} nombre
@@ -142,6 +142,7 @@ Route::resource("/usuarios","UsuariosController");
  * @apiGroup Actualizacion de usuario
  * @apiDescription Ingresas la ID de la persona que quieres modificar y el token 
  * que te valide como usuario logeado
+ * @apiVersion 0.1.0
  *
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff
@@ -206,6 +207,7 @@ Route::resource("/usuarios","UsuariosController");
  * @apiGroup Obtener un usuario
  * @apiDescription Se ingresa la id del usuario que deseamos obtener, y el token
  * que nos valide como usuario logrado
+ * @apiVersion 0.1.0
  *
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/854?token=ddffef&fsfdsf/ffdsf
@@ -249,6 +251,7 @@ Route::resource("/usuarios","UsuariosController");
  * @apiGroup Eliminar a un usuario
  * @apiDescription Manda la id del usuario que deseamos eliminar del sistema
  * y el token que nos válida como usuario logeado
+ * @apiVersion 0.1.0
  *
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/usuarios/357?token=ddffef&fsfdsf/ffdsf
@@ -271,7 +274,8 @@ Route::resource("/usuarios","UsuariosController");
  * @apiName quehaypahacerctg
  * @apiGroup Login de aplicacion
  * @apiDescription login del usuario para obtener su token de sesión
- *
+ *@apiVersion 0.1.0
+ * 
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/login
  *

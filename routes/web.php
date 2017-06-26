@@ -13,3 +13,6 @@
 Route::get("/",function(){
     return redirect("documentacion/index.html");
 });
+Route::get("pruebas",function(){
+   return view("welcome") ;
+});

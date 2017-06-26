@@ -14,11 +14,13 @@ class UsuariosController extends Controller {
      */
     public function index(Request $request) {
         //optener los usuarios
+        /*
         if (!User::validarToken($request->token)) {
             //no tiene un token valido lo mandamos a la mierda
             return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
         }
-        return response()->json(User::all());
+        */
+        return response()->json(User::getAll());
     }
 
     /**
