@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class UsuariosController extends Controller {
 
@@ -20,6 +21,7 @@ class UsuariosController extends Controller {
             return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
         }
         */
+        Log:info("Piden todos los usuarios");
         return response()->json(User::getAll());
     }
 
@@ -41,12 +43,9 @@ class UsuariosController extends Controller {
      */
     public function store(Request $request) {
         //Creacion del usuario
-        $usuario = User::crearUsuario($request);
-        if ($usuario) {
-            return response()->json($usuario);
-        } else {
-            return response()->json("Usuario no creado, verifique los datos", 501);
-        }
+        
+        $usuario = User::crearUsuario($request);    
+        return response()->json($usuario);
     }
 
     /**

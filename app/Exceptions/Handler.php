@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        Log::warning('Error en aplicacion '.$exception);
+        if($exception instanceof \Illuminate\Database\QueryException){
+            return \Response::json($exception->errorInfo[2], 501);
+        }
         return parent::render($request, $exception);
     }
 

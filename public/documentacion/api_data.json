@@ -416,20 +416,31 @@
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/login"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "InternalError",
-            "description": "<p>Error interno <code>500</code>.</p>"
+            "field": "500",
+            "description": "<p>Error interno.</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "LoginInvalido",
-            "description": "<p>Cuando las credenciales no son validas ocurre este error<code>403</code>.</p>"
+            "field": "404",
+            "description": "<p>Usuario no encontrado.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Contraseña invalida.</p>"
           }
         ]
       }
@@ -472,8 +483,8 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "InternalError",
-            "description": "<p>Error interno con código <code>500</code></p>"
+            "field": "500",
+            "description": "<p>Error interno.</p>"
           }
         ]
       }
@@ -647,14 +658,14 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Error_1",
-            "description": "<p>con código <code>4xx</code> y una corta explicación.</p>"
+            "field": "Codigo1",
+            "description": "<p>Descripcion <code>4xx</code> y una corta explicación.</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Error_2",
-            "description": "<p>con código <code>4xx</code> y una explicación.</p>"
+            "field": "Codigo2",
+            "description": "<p>Descripcion <code>4xx</code> y una explicación.</p>"
           }
         ]
       }
@@ -857,20 +868,31 @@
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "InternalError",
-            "description": "<p>Error Interno con código <code>500</code></p>"
+            "field": "500",
+            "description": "<p>Error Interno.</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "ErrorDeParametros",
-            "description": "<p>Usualmente relacionado por ingresar datos de una persona ya registrada tiene código <code>501</code></p>"
+            "field": "501",
+            "description": "<p>ErrorDeParametros Usualmente relacionado por ingresar datos de una persona ya registrada</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "502",
+            "description": "<p>No guardo el registro.</p>"
           }
         ]
       }

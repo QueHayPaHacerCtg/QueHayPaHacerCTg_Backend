@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-        
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -66,34 +66,51 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-           Pruebas
+            Pruebas
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script>
-        $(document).ready(function(){
-            
-        })
-        function getAllUsers(){
-            $.ajax({
-                method: "POST",
-                url: "some.php",
-                data: { name: "John", location: "Boston" }
-            })
-                .done(function( msg ) {
-                  alert( "Data Saved: " + msg );
-            });
+$(document).ready(function () {
+
+})
+function login(user, pass) {
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/api/login",
+        data: {
+            name: user,
+            location: pass
         }
-        
-        function registroDeUsuarios(){
-            $.ajax({
-                method: "POST",
-                url: "some.php",
-                data: { name: "John", location: "Boston" }
-            })
-            .done(function( msg ) {
-                alert( "Data Saved: " + msg );
-            });
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
+function registroDeUsuarios() {
+    var marca = Date.now();
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/api/usuarios",
+        data: {
+            nombre: "John",
+            apellido: "Boston",
+            cedula: "11" + marca,
+            fecha_nacimiento: "1990-11-10",
+            sexo: "Hombre",
+            telefono: "11" + marca,
+            movil: "11" + marca,
+            email: "11" + marca + "@prueba.com",
+            user: marca,
+            pass: marca,
         }
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
         </script>
     </body>
 </html>

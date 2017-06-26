@@ -37,8 +37,8 @@ Route::get("/",function(){
  * 
  * @apiSampleRequest EjemploSoloParaBusquedas
  * 
- * @apiError Error_1 con código <code>4xx</code> y una corta explicación.
- * @apiError Error_2 con código <code>4xx</code> y una explicación.
+ * @apiError Codigo1 Descripcion <code>4xx</code> y una corta explicación.
+ * @apiError Codigo2 Descripcion <code>4xx</code> y una explicación.
  */
 
 /**
@@ -71,7 +71,7 @@ Route::get("/",function(){
  *
  * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/usuarios
  * 
- * @apiError InternalError Error interno con código <code>500</code>
+ * @apiError 500 Error interno.
  *
  */
 
@@ -128,9 +128,12 @@ Route::get("/",function(){
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError InternalError Error Interno con código <code>500</code>
- * @apiError ErrorDeParametros Usualmente relacionado por ingresar datos de una 
- * persona ya registrada tiene código <code>501</code>
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/usuarios
+ * 
+ * @apiError 500 Error Interno.
+ * @apiError 501 ErrorDeParametros Usualmente relacionado por ingresar datos de una 
+ * persona ya registrada
+ * @apiError 502 No guardo el registro.
  *
  */
 
@@ -312,8 +315,11 @@ Route::resource("/usuarios","UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiError InternalError Error interno <code>500</code>.
- * @apiError LoginInvalido Cuando las credenciales no son validas ocurre este error<code>403</code>.
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/login
+ * 
+ * @apiError 500 Error interno.
+ * @apiError 404 Usuario no encontrado.
+ * @apiError 403 Contraseña invalida.
  *
  */
 

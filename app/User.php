@@ -9,7 +9,7 @@ class User extends Model
 {
     protected $table = "usuarios";
     //datos ocultos
-    protected $hidden = ['pass',"longitud","latitud","user"];
+    protected $hidden = ['pass',"longitud","latitud"];
     
     public static function getAll(){
         return User::select(
@@ -42,18 +42,20 @@ class User extends Model
     public static function autenticar($user, $pass) {
         try{
             $usuario = User::where("user",$user)->first();
-           
+            if(!is_object($usuario)){
+                abort(404,"usuario no existe");
+            }
             if(Hash::check($pass, $usuario->pass)){
                 //actualizamos la session_key y se la mandamos
                 $usuario->token = Hash::make(date("YMD").$usuario->id);
                 $usuario->save();
                 return $usuario->token;
             }else{
-                throw new Exception("Contraseña Invalida");
+                abort(403,"Contraseña no valida");
             }   
         }catch(Exception $e){
             //dd($e);
-            return FALSE;
+            return FALSE;;
         }
     }
     
@@ -63,28 +65,25 @@ class User extends Model
      * @param type $request
      */
     public static function crearUsuario($request){
-        try{
-            $usuario = new User();
-            $usuario->user = $request->user;
-            $usuario->pass = Hash::make($request->pass);
-            $usuario->longitud = $request->longitud;
-            $usuario->latitud = $request->latitud;
-            $usuario->nombre = $request->nombre;
-            $usuario->apellido = $request->apellido;
-            $usuario->cedula = $request->cedula;
-            $usuario->fecha_nacimiento = $request->fecha_nacimiento;
-            $usuario->sexo = $request->sexo;
-            $usuario->telefono = $request->telefono;
-            $usuario->movil = $request->movil;
-            $usuario->email = $request->email;
-            //lo creamos
-            if($usuario->save()){
-                return $usuario;
-            }else{
-                throw new Exception("No se guardo el usuario");
-            }
-        }catch(Exception $e){
-            return False;
+        
+        $usuario = new User();
+        $usuario->user = $request->user;
+        $usuario->pass = Hash::make($request->pass);
+        $usuario->longitud = $request->longitud;
+        $usuario->latitud = $request->latitud;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->cedula = $request->cedula;
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->sexo = $request->sexo;
+        $usuario->telefono = $request->telefono;
+        $usuario->movil = $request->movil;
+        $usuario->email = $request->email;
+        //lo creamos
+        if($usuario->save()){
+            return $usuario;
+        }else{
+            abort(502, "No se creo el usuario correctamente");
         }
     }
     
