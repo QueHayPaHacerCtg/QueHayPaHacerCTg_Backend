@@ -668,7 +668,7 @@ define({ "api": [
     "title": "",
     "name": "quehaypahacerctg",
     "group": "Registro_de_usuario",
-    "description": "<p>Ruta para registrar un usuario en sistema para posteriormente hacer login para optener un token</p>",
+    "description": "<p>Ruta para registrar un usuario en sistema para posteriormente hacer login y optener un token</p>",
     "version": "0.1.0",
     "examples": [
       {
@@ -685,21 +685,21 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "nombre",
-            "description": ""
+            "description": "<p>MaxLength:190</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "apellido",
-            "description": ""
+            "description": "<p>MaxLength:190</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "cedula",
-            "description": "<p><strong>Unique</strong></p>"
+            "description": "<p>MaxLength:50 <strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
@@ -720,49 +720,49 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "telefono",
-            "description": ""
+            "description": "<p>MaxLength:50</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "movil",
-            "description": "<p><strong>Unique</strong></p>"
+            "description": "<p>MaxLength:50 <strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "email",
-            "description": "<p><strong>Unique</strong></p>"
+            "description": "<p>MaxLength:190 <strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "user",
-            "description": "<p><strong>Unique</strong></p>"
+            "description": "<p>MaxLength:100 <strong>Unique</strong></p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "pass",
-            "description": ""
+            "description": "<p>MaxLength:190</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "longitud",
-            "description": "<p>Opcional</p>"
+            "description": "<p>MaxLength:190 Opcional</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "latitud",
-            "description": "<p>Opcional</p>"
+            "description": "<p>MaxLength:190 Opcional</p>"
           }
         ]
       }
