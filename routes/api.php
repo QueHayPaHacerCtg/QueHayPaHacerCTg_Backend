@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => ['api']], function () {
+//Route::group(['middleware' => ['api']], function () {
     Route::get("/",function(){
         return redirect(url("documentacion/index.html"));   
     });
@@ -319,4 +319,4 @@ Route::group(['middleware' => ['api']], function () {
     //Route::group(['middleware' => 'tokenValido'], function () {
         //Route::resource("persona","PersonaController");
     //});
-});
+//});
