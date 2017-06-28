@@ -3,18 +3,23 @@
 use Illuminate\Http\Request;
 
 /*
-|--------------------------------------------------------------------------
-| API Routes 
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-Route::get("/",function(){
-    return redirect(url("documentacion/index.html"));   
+  |--------------------------------------------------------------------------
+  | API Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register API routes for your application. These
+  | routes are loaded by the RouteServiceProvider within a group which
+  | is assigned the "api" middleware group. Enjoy building your API!
+  |
+ */
+Route::get("/", function() {
+    return redirect(url("documentacion/index.html"));
 });
+/**
+ * @apiDefine db
+ * @apiError 501 Usualmente para cuando es error de Base de datos, de duplicado, 
+ * requerido, violacion de llave foranea
+ */
 
 /**
  * @api {Method} /api/plantilla/
@@ -29,6 +34,8 @@ Route::get("/",function(){
  * 
  * @apiParam {string} Parametro Parametro (POST|PUT|DELECT) en la petición.
  * 
+ * @apiSuccess {Tipo} nombre descripcion
+ * 
  * @apiSuccessExample Ejemplo de Éxito:
  *      HTTP/1.1 200 OK
  *      {
@@ -39,8 +46,9 @@ Route::get("/",function(){
  * 
  * @apiError Codigo1 Descripcion <code>4xx</code> y una corta explicación.
  * @apiError Codigo2 Descripcion <code>4xx</code> y una explicación.
+ * 
+ * @apiUse db
  */
-
 /**
  * @api {GET} /api/usuarios
  * @apiName quehaypahacerctg
@@ -74,7 +82,6 @@ Route::get("/",function(){
  * @apiError 500 Error interno.
  *
  */
-
 /**
  * @api {POST} /api/usuarios
  * @apiName quehaypahacerctg
@@ -136,8 +143,7 @@ Route::get("/",function(){
  * @apiError 502 No guardo el registro.
  *
  */
-
-Route::resource("/usuarios","UsuariosController");
+Route::resource("/usuarios", "UsuariosController");
 
 /**
  * @api {PUT} /api/usuarios/{Numero:id}?token=AquiVaElToken
@@ -203,7 +209,6 @@ Route::resource("/usuarios","UsuariosController");
  * @apiError TokenInvalido El token suministrado no es valido <code>403</code>.
  *
  */
-
 /**
  * @api {get} /api/usuarios/{Numero:id}?token=AquiVaElToken
  * @apiName quehaypahacerctg
@@ -247,7 +252,6 @@ Route::resource("/usuarios","UsuariosController");
  * @apiError InternalError error con código <code>500</code>
  * 
  */
-
 /**
  * @api {DELETE} /api/usuarios/{Numero:id}?token=AquiVaElToken 
  * @apiName quehaypahacerctg
@@ -271,13 +275,12 @@ Route::resource("/usuarios","UsuariosController");
  * @apiError ErrorDeParametros Los datos suministrados no sn válidos y generarón un error<code>501</code>.
  *
  */
-
 /**
  * @api {POST} /api/login 
  * @apiName quehaypahacerctg
  * @apiGroup Login de aplicacion
  * @apiDescription login del usuario para obtener su token de sesión
- *@apiVersion 0.1.0
+ * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
  * http://quehaypahacer.nabu.com.co/index.php/api/login
@@ -322,9 +325,53 @@ Route::resource("/usuarios","UsuariosController");
  * @apiError 403 Contraseña invalida.
  *
  */
+Route::post("login", "UsuariosController@login");
 
-Route::post("login","UsuariosController@login");
-
+/**
+ * @api {POST} /api/sitio?token=AquiVaElToken
+ * @apiName quehaypahacerctg
+ * @apiGroup Crear Sitio
+ * @apiDescription Se crea un sitio para el listado. Para esto es necesario mandar token
+ * Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn
+ * 
+ * @apiParam {string} nombre maxlength:190 required *not null*
+ * @apiParam {text} descripcion maxlength:5000 *opcional*
+ * @apiParam {string} latitud maxlength:190 *opcional*
+ * @apiParam {string} longitud maxlength:190 *opcional*
+ * 
+ * @apiSuccess {integer} id Id del sitio
+ * @apiSuccess {string} nombre nombre del sitio
+ * @apiSuccess {string} descripcion Descripción del sitio
+ * @apiSuccess {string} longitud Longitud del sitio
+ * @apiSuccess {string} latitud latitud del sitio
+ * @apiSuccess {DateTime} created_at fecha de creacion _format("YYYY-MM-dd HH:ii:ss")_
+ * @apiSuccess {DateTime} Updated_at fecha de su ultima actualizacion _format("YYYY-MM-dd HH:ii:ss")_
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          id:1,
+ *          nombre:"Nombre",
+ *          descripcion:"descripcion",
+ *          longitud:"123546",
+ *          latitud:"426456",
+ *          created_at:"2017-06-27 20:00:00",
+ *          updated_at:"2017-06-27 20:00:00"
+ *      }
+ * 
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn
+ * 
+ * @apiError 401 Validación no satisfactoria
+ * @apiError 403 Token no valido
+ * @apiError 500 Error interno
+ * @apiError 501 No se registro
+ * 
+ */
+Route::resource("sitio","sitioController");
 //Route::group(['middleware' => 'tokenValido'], function () {
     //Route::resource("persona","PersonaController");
 //});

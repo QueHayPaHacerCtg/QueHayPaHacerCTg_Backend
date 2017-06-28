@@ -242,6 +242,155 @@ define({ "api": [
     "groupTitle": "Actualizacion_de_usuario"
   },
   {
+    "type": "POST",
+    "url": "/api/sitio?token=AquiVaElToken",
+    "title": "",
+    "name": "quehaypahacerctg",
+    "group": "Crear_Sitio",
+    "description": "<p>Se crea un sitio para el listado. Para esto es necesario mandar token Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>maxlength:190 required <em>not null</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "text",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>maxlength:5000 <em>opcional</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "latitud",
+            "description": "<p>maxlength:190 <em>opcional</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "longitud",
+            "description": "<p>maxlength:190 <em>opcional</em></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>nombre del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>Descripción del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "longitud",
+            "description": "<p>Longitud del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "latitud",
+            "description": "<p>latitud del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>fecha de creacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "Updated_at",
+            "description": "<p>fecha de su ultima actualizacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    id:1,\n    nombre:\"Nombre\",\n    descripcion:\"descripcion\",\n    longitud:\"123546\",\n    latitud:\"426456\",\n    created_at:\"2017-06-27 20:00:00\",\n    updated_at:\"2017-06-27 20:00:00\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Validación no satisfactoria</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Token no valido</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Error interno</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>No se registro</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Crear_Sitio"
+  },
+  {
     "type": "DELETE",
     "url": "/api/usuarios/{Numero:id}?token=AquiVaElToken",
     "title": "",
@@ -639,6 +788,17 @@ define({ "api": [
       }
     },
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Tipo",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>descripcion</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Ejemplo de Éxito:",
@@ -666,6 +826,12 @@ define({ "api": [
             "optional": false,
             "field": "Codigo2",
             "description": "<p>Descripcion <code>4xx</code> y una explicación.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
           }
         ]
       }

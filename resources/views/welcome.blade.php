@@ -78,8 +78,8 @@ function login(user, pass) {
         method: "POST",
         url: "http://localhost:8000/api/login",
         data: {
-            name: user,
-            location: pass
+            user: user,
+            pass: pass
         }
     }).done(function (msg) {
         console.log(msg);
@@ -88,22 +88,38 @@ function login(user, pass) {
     });
 }
 
-function registroDeUsuarios() {
+function registroDeUsuarios(nombre, apellido, cedula, email) {
     var marca = Date.now();
     $.ajax({
         method: "POST",
         url: "http://localhost:8000/api/usuarios",
         data: {
-            nombre: "John",
-            apellido: "Boston",
-            cedula: "11" + marca,
+            nombre: nombre,
+            apellido: apellido,
+            cedula: cedula,
             fecha_nacimiento: "1990-11-10",
             sexo: "Hombre",
             telefono: "11" + marca,
             movil: "11" + marca,
-            email: "11" + marca + "@prueba.com",
-            user: marca,
-            pass: marca,
+            email: email,
+            user: email,
+            pass: cedula,
+        }
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+function registrarSitio(token, nombre, descripcion) {
+    //logeamos y obtenemos token
+    var token = token;
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/api/sitio?token="+token,
+        data: {
+            nombre: nombre,
+            descripcion: descripcion
         }
     }).done(function (msg) {
         console.log(msg);
