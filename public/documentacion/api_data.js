@@ -5,11 +5,11 @@ define({ "api": [
     "title": "Plantilla para la documentación",
     "group": "Plantilla",
     "description": "<p>Aquí se explica que hace el recurso con varias lineas</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{Tipo:parametro_get}",
+        "content": "http://quehaypahacer.nabu.com.co/api/plantilla/{Tipo:parametro_get}",
         "type": "json"
       }
     ],
@@ -85,11 +85,11 @@ define({ "api": [
     "title": "Obtener todos los sitios",
     "group": "Sitios",
     "description": "<p>Listado de todos los sitios registrados</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio",
+        "content": "http://quehaypahacer.nabu.com.co/api/sitio",
         "type": "json"
       }
     ],
@@ -143,7 +143,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio"
+        "url": "http://quehaypahacer.nabu.com.co/api/sitio"
       }
     ],
     "filename": "routes/api.php",
@@ -168,11 +168,11 @@ define({ "api": [
     "title": "Obtener un sitio",
     "group": "Sitios",
     "description": "<p>Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y su ultima modificacion</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio/1",
+        "content": "http://quehaypahacer.nabu.com.co/api/sitio/1",
         "type": "json"
       }
     ],
@@ -240,7 +240,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio/1"
+        "url": "http://quehaypahacer.nabu.com.co/api/sitio/1"
       }
     ],
     "error": {
@@ -271,11 +271,11 @@ define({ "api": [
     "title": "Guardar Sitio",
     "group": "Sitios",
     "description": "<p>Se crea un sitio para el listado. Para esto es necesario mandar token Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio",
+        "content": "http://quehaypahacer.nabu.com.co/api/sitio",
         "type": "json"
       }
     ],
@@ -377,7 +377,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio"
+        "url": "http://quehaypahacer.nabu.com.co/api/sitio"
       }
     ],
     "error": {
@@ -414,11 +414,11 @@ define({ "api": [
     "title": "Eliminar a un usuario",
     "group": "Usuarios",
     "description": "<p>Manda la id del usuario que deseamos eliminar del sistema y el token que nos válida como usuario logeado</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/357?token=ddffef&fsfdsf/ffdsf",
+        "content": "http://quehaypahacer.nabu.com.co/api/usuarios/357?token=ddffef&fsfdsf/ffdsf",
         "type": "json"
       }
     ],
@@ -471,11 +471,11 @@ define({ "api": [
     "title": "Obtener todos los usuarios regustrados",
     "group": "Usuarios",
     "description": "<p>Optener Todos los usuarios registrados, usando el token para saber que es un usuario logeado, y autorizado para acceder a ese recurso</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios",
+        "content": "http://quehaypahacer.nabu.com.co/api/usuarios",
         "type": "json"
       }
     ],
@@ -490,7 +490,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios"
+        "url": "http://quehaypahacer.nabu.com.co/api/usuarios"
       }
     ],
     "error": {
@@ -515,11 +515,11 @@ define({ "api": [
     "title": "Obtener un usuario",
     "group": "Usuarios",
     "description": "<p>Se ingresa la id del usuario que deseamos obtener, y el token que nos valide como usuario logrado</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/854?token=ddffef&fsfdsf/ffdsf",
+        "content": "http://quehaypahacer.nabu.com.co/api/usuarios/854?token=ddffef&fsfdsf/ffdsf",
         "type": "json"
       }
     ],
@@ -633,11 +633,11 @@ define({ "api": [
     "title": "Login de aplicacion",
     "group": "Usuarios",
     "description": "<p>login del usuario para obtener su token de sesión</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/login",
+        "content": "http://quehaypahacer.nabu.com.co/api/login",
         "type": "json"
       }
     ],
@@ -746,7 +746,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/login"
+        "url": "http://quehaypahacer.nabu.com.co/api/login"
       }
     ],
     "error": {
@@ -783,11 +783,11 @@ define({ "api": [
     "title": "Registro de usuario",
     "group": "Usuarios",
     "description": "<p>Ruta para registrar un usuario en sistema para posteriormente hacer login y optener un token</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios",
+        "content": "http://quehaypahacer.nabu.com.co/api/usuarios",
         "type": "json"
       }
     ],
@@ -973,7 +973,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios"
+        "url": "http://quehaypahacer.nabu.com.co/api/usuarios"
       }
     ],
     "error": {
@@ -1010,11 +1010,11 @@ define({ "api": [
     "title": "Actualizacion de usuario",
     "group": "Usuarios",
     "description": "<p>Ingresas la ID de la persona que quieres modificar y el token que te valide como usuario logeado</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff",
+        "content": "http://quehaypahacer.nabu.com.co/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff",
         "type": "json"
       }
     ],
