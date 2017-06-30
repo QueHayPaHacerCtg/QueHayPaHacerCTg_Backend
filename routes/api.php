@@ -393,16 +393,14 @@ Route::post("login", "UsuariosController@login");
  * @apiUse db
  */
 /**
- * @api {GET} /api/sitio/{id} Obtener un sitio
+ * @api {GET} /api/sitio/{integer:id} Obtener un sitio
  * @apiGroup Sitios
  * @apiDescription Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y
  * su ultima modificacion
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/index.php/api/sitio/{1}
- * 
- * @apiParam {integer} ID Id del sitio
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitio/1
  * 
  * @apiSuccess {string} nombre nombre del sitio
  * @apiSuccess {string} descripcion Descripción del sitio
@@ -414,7 +412,6 @@ Route::post("login", "UsuariosController@login");
  * 
  * @apiSuccessExample Ejemplo de Éxito:
  *      HTTP/1.1 200 OK
- *      {
  *          {
  *              descripcion:"Plazuela",
  *              latitud:null,
@@ -424,9 +421,8 @@ Route::post("login", "UsuariosController@login");
  *              updated_at:"2017-06-30 00:07:35",
  *              created_at:"2017-06-30 00:07:35"
  *          }
- *      }
  * 
- * @apiSampleRequest EjemploSoloParaBusquedas
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitio/1
  * 
  * @apiError 404 Sitio no existe.
  * 

@@ -65,9 +65,12 @@ class SitioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = FALSE)
     {
         //obtener un sitio en especifico
+        if(!$id){
+            return response()->json("No enviaste una ID",403);
+        }
         $sitio = Sitio::find($id);
         if(!is_object($sitio)){
             return response()->json("Sitio no existe",404);
