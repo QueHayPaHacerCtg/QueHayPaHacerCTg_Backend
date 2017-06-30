@@ -127,6 +127,27 @@ function registrarSitio(token, nombre, descripcion) {
         console.log(msg);
     });
 }
+function sitios(){
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/sitio"
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+function sitio(id){
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/sitio/"+id
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
         </script>
     </body>
 </html>

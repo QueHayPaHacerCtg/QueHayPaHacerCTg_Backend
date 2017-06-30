@@ -13,5 +13,14 @@ class Sitio extends Model {
         "latitud" => "max:190",
         "longitud" => "max:190"
     ];
-
+    
+    public static function getAll(){
+        return Sitio::select(
+                "nombre",
+                "descripcion",
+                "latitud",
+                "longitud",
+                "id"
+                )->get();
+    }   
 }

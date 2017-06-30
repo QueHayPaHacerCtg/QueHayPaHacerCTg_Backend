@@ -20,11 +20,9 @@ Route::get("/", function() {
  * @apiError 501 Usualmente para cuando es error de Base de datos, de duplicado, 
  * requerido, violacion de llave foranea
  */
-
 /**
- * @api {Method} /api/plantilla/
- * @apiName quehaypahacerctg
- * @apiGroup Plantilla Documentacion
+ * @api {Method} /api/plantilla/ Plantilla para la documentación
+ * @apiGroup Plantilla
  * @apiDescription Aquí se explica que hace el recurso
  * con varias lineas
  * @apiVersion 0.1.0
@@ -50,9 +48,8 @@ Route::get("/", function() {
  * @apiUse db
  */
 /**
- * @api {GET} /api/usuarios
- * @apiName quehaypahacerctg
- * @apiGroup Obtener Todos los usuarios
+ * @api {GET} /api/usuarios Obtener todos los usuarios regustrados
+ * @apiGroup Usuarios
  * @apiDescription Optener Todos los usuarios registrados, usando el token para saber que es un
  * usuario logeado, y autorizado para acceder a ese recurso
  * @apiVersion 0.1.0
@@ -83,9 +80,8 @@ Route::get("/", function() {
  *
  */
 /**
- * @api {POST} /api/usuarios
- * @apiName quehaypahacerctg
- * @apiGroup Registro de usuario
+ * @api {POST} /api/usuarios Registro de usuario
+ * @apiGroup Usuarios
  * @apiDescription Ruta para registrar un usuario en sistema para posteriormente hacer
  * login y optener un token
  * @apiVersion 0.1.0
@@ -146,9 +142,8 @@ Route::get("/", function() {
 Route::resource("/usuarios", "UsuariosController");
 
 /**
- * @api {PUT} /api/usuarios/{Numero:id}?token=AquiVaElToken
- * @apiName quehaypahacerctg
- * @apiGroup Actualizacion de usuario
+ * @api {PUT} /api/usuarios/{Numero:id}?token=AquiVaElToken Actualizacion de usuario
+ * @apiGroup Usuarios
  * @apiDescription Ingresas la ID de la persona que quieres modificar y el token 
  * que te valide como usuario logeado
  * @apiVersion 0.1.0
@@ -210,9 +205,8 @@ Route::resource("/usuarios", "UsuariosController");
  *
  */
 /**
- * @api {get} /api/usuarios/{Numero:id}?token=AquiVaElToken
- * @apiName quehaypahacerctg
- * @apiGroup Obtener un usuario
+ * @api {get} /api/usuarios/{Numero:id}?token=AquiVaElToken Obtener un usuario
+ * @apiGroup Usuarios
  * @apiDescription Se ingresa la id del usuario que deseamos obtener, y el token
  * que nos valide como usuario logrado
  * @apiVersion 0.1.0
@@ -253,9 +247,8 @@ Route::resource("/usuarios", "UsuariosController");
  * 
  */
 /**
- * @api {DELETE} /api/usuarios/{Numero:id}?token=AquiVaElToken 
- * @apiName quehaypahacerctg
- * @apiGroup Eliminar a un usuario
+ * @api {DELETE} /api/usuarios/{Numero:id}?token=AquiVaElToken Eliminar a un usuario
+ * @apiGroup Usuarios
  * @apiDescription Manda la id del usuario que deseamos eliminar del sistema
  * y el token que nos válida como usuario logeado
  * @apiVersion 0.1.0
@@ -276,9 +269,8 @@ Route::resource("/usuarios", "UsuariosController");
  *
  */
 /**
- * @api {POST} /api/login 
- * @apiName quehaypahacerctg
- * @apiGroup Login de aplicacion
+ * @api {POST} /api/login Login de aplicacion
+ * @apiGroup Usuarios
  * @apiDescription login del usuario para obtener su token de sesión
  * @apiVersion 0.1.0
  * 
@@ -328,9 +320,8 @@ Route::resource("/usuarios", "UsuariosController");
 Route::post("login", "UsuariosController@login");
 
 /**
- * @api {POST} /api/sitio?token=AquiVaElToken
- * @apiName quehaypahacerctg
- * @apiGroup Crear Sitio
+ * @api {POST} /api/sitio?token=AquiVaElToken Guardar Sitio
+ * @apiGroup Sitios
  * @apiDescription Se crea un sitio para el listado. Para esto es necesario mandar token
  * Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.
  * @apiVersion 0.1.0
@@ -371,7 +362,78 @@ Route::post("login", "UsuariosController@login");
  * @apiError 501 No se registro
  * 
  */
-Route::resource("sitio","sitioController");
+/**
+ * @api {Method} /api/sitios Obtener todos los sitios
+ * @apiGroup Sitios
+ * @apiDescription Listado de todos los sitios registrados
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitios
+ * 
+ * @apiSuccess {string} nombre nombre del sitio
+ * @apiSuccess {string} descripcion Descripción del sitio
+ * @apiSuccess {string} latitud Latitud del sitio, para google maps
+ * @apiSuccess {string} longitud Longitud del sitio para google maps
+ * @apiSuccess {integer} ID id del sitio
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *  [     
+ *      {
+ *          descripcion:"Plazuela",
+ *          latitud:null,
+ *          longitud:null,
+ *          nombre:"Sao",
+ *          id:1
+ *      }
+ * ]
+ * 
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitios
+ *  
+ * @apiUse db
+ */
+/**
+ * @api {GET} /api/sitio/{id} Obtener un sitio
+ * @apiGroup Sitios
+ * @apiDescription Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y
+ * su ultima modificacion
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{Tipo:parametro_get}
+ * 
+ * @apiParam {integer} ID Id del sitio
+ * 
+ * @apiSuccess {string} nombre nombre del sitio
+ * @apiSuccess {string} descripcion Descripción del sitio
+ * @apiSuccess {string} latitud Latitud del sitio, para google maps
+ * @apiSuccess {string} longitud Longitud del sitio para google maps
+ * @apiSuccess {integer} ID id del sitio
+ * @apiSuccess {DateTime} created_at Fecha de creacion *format("YYYY-MM-DD HH:ii:ss")*
+ * @apiSuccess {DateTime} updated_at Fecha de su ultima actualización *format("YYYY-MM-DD HH:ii:ss")*
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          {
+ *              descripcion:"Plazuela",
+ *              latitud:null,
+ *              longitud:null,
+ *              nombre:"Sao",
+ *              id:1,
+ *              updated_at:"2017-06-30 00:07:35",
+ *              created_at:"2017-06-30 00:07:35"
+ *          }
+ *      }
+ * 
+ * @apiSampleRequest EjemploSoloParaBusquedas
+ * 
+ * @apiError 404 Sitio no existe.
+ * 
+ * @apiUse db
+ */
+Route::resource("sitio", "sitioController");
 //Route::group(['middleware' => 'tokenValido'], function () {
     //Route::resource("persona","PersonaController");
 //});

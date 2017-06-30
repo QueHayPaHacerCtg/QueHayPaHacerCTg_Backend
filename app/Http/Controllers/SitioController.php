@@ -14,8 +14,8 @@ class SitioController extends Controller
      */
     public function index()
     {
-        //
-        abort(423,"Opcion no habilitada");
+        //listado de sitios
+        return response()->json(Sitio::getAll());
     }
 
     /**
@@ -45,25 +45,17 @@ class SitioController extends Controller
             $sitio->latitud = $request->latitud;
             $sitio->longitud = $request->longitud;
             
-            
-            
-            if($this->validate($request, [
-                "nombre" => array("required","max:190"),
-                "descripcion" => "max:5000",
-                "latitud" => "max:190",
-                "longitud" => "max:190"
-            ])){
+            if($this->validate($request, $sitio->validacion)){
                 return response()->json("Validacion no valida",401);
             }
-            
             if($sitio->save()){
                 return response()->json($sitio);
             }else{
-                abort(501,"No se pudo registrar");
+                return response()->json("No se pudo registrar",501);
             }
         } catch (Exception $ex) {
             //Probar esta excepcion
-            abort(500,$ex);
+            return response()->json("Error interno",500);
         }
     }
 
@@ -75,8 +67,12 @@ class SitioController extends Controller
      */
     public function show($id)
     {
-        //
-        abort(423,"Opcion no habilitada");
+        //obtener un sitio en especifico
+        $sitio = Sitio::find($id);
+        if(!is_object($sitio)){
+            return response()->json("Sitio no existe",404);
+        }
+        return response()->json($sitio);
     }
 
     /**
