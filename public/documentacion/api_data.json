@@ -81,87 +81,7 @@
   },
   {
     "type": "GET",
-    "url": "/api/sitio/{id}",
-    "title": "Obtener un sitio",
-    "group": "Sitios",
-    "description": "<p>Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y su ultima modificacion</p>",
-    "version": "0.1.0",
-    "examples": [
-      {
-        "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{Tipo:parametro_get}",
-        "type": "json"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Parametro",
-            "description": "<p>Parametro (POST|PUT|DELECT) en la petición.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Tipo",
-            "optional": false,
-            "field": "nombre",
-            "description": "<p>descripcion</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Ejemplo de Éxito:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"mensaje\":\"Esto es el ejemplo de todo OK\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "sampleRequest": [
-      {
-        "url": "EjemploSoloParaBusquedas"
-      }
-    ],
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Codigo1",
-            "description": "<p>Descripcion <code>4xx</code> y una corta explicación.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Codigo2",
-            "description": "<p>Descripcion <code>4xx</code> y una explicación.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "501",
-            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
-          }
-        ]
-      }
-    },
-    "filename": "routes/api.php",
-    "groupTitle": "Sitios",
-    "name": "GetApiSitioId"
-  },
-  {
-    "type": "Method",
-    "url": "/api/sitios",
+    "url": "/api/sitio",
     "title": "Obtener todos los sitios",
     "group": "Sitios",
     "description": "<p>Listado de todos los sitios registrados</p>",
@@ -169,7 +89,7 @@
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitios",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio",
         "type": "json"
       }
     ],
@@ -216,19 +136,19 @@
       "examples": [
         {
           "title": "Ejemplo de Éxito:",
-          "content": "     HTTP/1.1 200 OK\n [     \n     {\n         descripcion:\"Plazuela\",\n         latitud:null,\n         longitud:null,\n         nombre:\"Sao\",\n         id:1\n     }\n]",
+          "content": "     HTTP/1.1 200 OK\n [     \n     {\n         descripcion:\"Plazuela\",\n         latitud:\"78678967\",\n         longitud:\"6453686\",\n         nombre:\"Sao\",\n         id:1\n     }\n]",
           "type": "json"
         }
       ]
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitios"
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio"
       }
     ],
     "filename": "routes/api.php",
     "groupTitle": "Sitios",
-    "name": "MethodApiSitios",
+    "name": "GetApiSitio",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -243,8 +163,124 @@
     }
   },
   {
+    "type": "GET",
+    "url": "/api/sitio/{id}",
+    "title": "Obtener un sitio",
+    "group": "Sitios",
+    "description": "<p>Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y su ultima modificacion</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio/{1}",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "integer",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>Id del sitio</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>nombre del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>Descripción del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "latitud",
+            "description": "<p>Latitud del sitio, para google maps</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "longitud",
+            "description": "<p>Longitud del sitio para google maps</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>id del sitio</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Fecha de creacion <em>format(&quot;YYYY-MM-DD HH:ii:ss&quot;)</em></p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>Fecha de su ultima actualización <em>format(&quot;YYYY-MM-DD HH:ii:ss&quot;)</em></p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    {\n        descripcion:\"Plazuela\",\n        latitud:null,\n        longitud:null,\n        nombre:\"Sao\",\n        id:1,\n        updated_at:\"2017-06-30 00:07:35\",\n        created_at:\"2017-06-30 00:07:35\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "EjemploSoloParaBusquedas"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sitio no existe.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Sitios",
+    "name": "GetApiSitioId"
+  },
+  {
     "type": "POST",
-    "url": "/api/sitio?token=AquiVaElToken",
+    "url": "/api/sitio",
     "title": "Guardar Sitio",
     "group": "Sitios",
     "description": "<p>Se crea un sitio para el listado. Para esto es necesario mandar token Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.</p>",
@@ -252,7 +288,7 @@
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn",
+        "content": "http://quehaypahacer.nabu.com.co/index.php/api/sitio",
         "type": "json"
       }
     ],
@@ -354,7 +390,7 @@
     },
     "sampleRequest": [
       {
-        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn"
+        "url": "http://quehaypahacer.nabu.com.co/index.php/api/sitio"
       }
     ],
     "error": {
@@ -364,13 +400,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "401",
-            "description": "<p>Validación no satisfactoria</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "403",
-            "description": "<p>Token no valido</p>"
+            "description": "<p>Validación fallida</p>"
           },
           {
             "group": "Error 4xx",
@@ -389,7 +419,7 @@
     },
     "filename": "routes/api.php",
     "groupTitle": "Sitios",
-    "name": "PostApiSitioTokenAquivaeltoken"
+    "name": "PostApiSitio"
   },
   {
     "type": "DELETE",

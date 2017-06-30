@@ -46,7 +46,7 @@ class SitioController extends Controller
             $sitio->longitud = $request->longitud;
             
             if($this->validate($request, $sitio->validacion)){
-                return response()->json("Validacion no valida",401);
+                return response()->json("Validación fallida",401);
             }
             if($sitio->save()){
                 return response()->json($sitio);

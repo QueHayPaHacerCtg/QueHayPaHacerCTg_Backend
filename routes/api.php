@@ -320,14 +320,14 @@ Route::resource("/usuarios", "UsuariosController");
 Route::post("login", "UsuariosController@login");
 
 /**
- * @api {POST} /api/sitio?token=AquiVaElToken Guardar Sitio
+ * @api {POST} /api/sitio Guardar Sitio
  * @apiGroup Sitios
  * @apiDescription Se crea un sitio para el listado. Para esto es necesario mandar token
  * Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitio
  * 
  * @apiParam {string} nombre maxlength:190 required *not null*
  * @apiParam {text} descripcion maxlength:5000 *opcional*
@@ -354,22 +354,21 @@ Route::post("login", "UsuariosController@login");
  *          updated_at:"2017-06-27 20:00:00"
  *      }
  * 
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitio=token=bjknl89dfoiq2f3kfn
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitio
  * 
- * @apiError 401 Validación no satisfactoria
- * @apiError 403 Token no valido
+ * @apiError 401 Validación fallida
  * @apiError 500 Error interno
  * @apiError 501 No se registro
  * 
  */
 /**
- * @api {Method} /api/sitios Obtener todos los sitios
+ * @api {GET} /api/sitio Obtener todos los sitios
  * @apiGroup Sitios
  * @apiDescription Listado de todos los sitios registrados
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/index.php/api/sitios
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitio
  * 
  * @apiSuccess {string} nombre nombre del sitio
  * @apiSuccess {string} descripcion Descripción del sitio
@@ -382,14 +381,14 @@ Route::post("login", "UsuariosController@login");
  *  [     
  *      {
  *          descripcion:"Plazuela",
- *          latitud:null,
- *          longitud:null,
+ *          latitud:"78678967",
+ *          longitud:"6453686",
  *          nombre:"Sao",
  *          id:1
  *      }
  * ]
  * 
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitios
+ * @apiSampleRequest http://quehaypahacer.nabu.com.co/index.php/api/sitio
  *  
  * @apiUse db
  */
@@ -401,7 +400,7 @@ Route::post("login", "UsuariosController@login");
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/index.php/api/plantilla/{Tipo:parametro_get}
+ * http://quehaypahacer.nabu.com.co/index.php/api/sitio/{1}
  * 
  * @apiParam {integer} ID Id del sitio
  * 
@@ -433,7 +432,7 @@ Route::post("login", "UsuariosController@login");
  * 
  * @apiUse db
  */
-Route::resource("sitio", "sitioController");
+Route::resource("sitio", "SitioController");
 //Route::group(['middleware' => 'tokenValido'], function () {
     //Route::resource("persona","PersonaController");
 //});
