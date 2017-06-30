@@ -1,6 +1,6 @@
 define({
   "name": "Que Hay Pa' Hacer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "documentacion para la API de quehaypahacerctg, creado por Luis Plata (www.luisplata@gmail.com)",
   "title": "Documentacion API",
   "url": "",
@@ -9,7 +9,7 @@ define({
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-06-30T00:56:27.692Z",
+    "time": "2017-06-30T00:58:13.169Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }
