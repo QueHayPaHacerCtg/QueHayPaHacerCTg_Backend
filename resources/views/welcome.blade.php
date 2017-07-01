@@ -88,6 +88,21 @@ function login(user, pass) {
     });
 }
 
+function loginFB(userID) {
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/api/login",
+        data: {
+            userID: userID,
+            tipoAutenticacion: "FB"
+        }
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
 function registroDeUsuarios(nombre, apellido, cedula, email) {
     var marca = Date.now();
     $.ajax({
@@ -111,12 +126,34 @@ function registroDeUsuarios(nombre, apellido, cedula, email) {
         console.log(msg);
     });
 }
+
+function registroDeUsuariosFB(nombre, cedula, userID, tipoAutenticacion, email) {
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/api/usuarios",
+        data: {
+            nombre: nombre,
+            cedula: cedula,
+            fecha_nacimiento: "1990-11-10",
+            sexo: "Hombre",
+            email: email,
+            userID: userID,
+            foto: "foto",
+            tipoAutenticacion: tipoAutenticacion
+        }
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
 function registrarSitio(token, nombre, descripcion) {
     //logeamos y obtenemos token
     var token = token;
     $.ajax({
         method: "POST",
-        url: "http://localhost:8000/api/sitio?token="+token,
+        url: "http://localhost:8000/api/sitio?token=" + token,
         data: {
             nombre: nombre,
             descripcion: descripcion
@@ -127,7 +164,7 @@ function registrarSitio(token, nombre, descripcion) {
         console.log(msg);
     });
 }
-function sitios(){
+function sitios() {
     $.ajax({
         method: "GET",
         url: "http://localhost:8000/api/sitio"
@@ -137,10 +174,10 @@ function sitios(){
         console.log(msg);
     });
 }
-function sitio(id){
+function sitio(id) {
     $.ajax({
         method: "GET",
-        url: "http://localhost:8000/api/sitio/"+id
+        url: "http://localhost:8000/api/sitio/" + id
     }).done(function (msg) {
         console.log(msg);
     }).fail(function (msg) {

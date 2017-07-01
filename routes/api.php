@@ -25,10 +25,10 @@ Route::get("/", function() {
  * @apiGroup Plantilla
  * @apiDescription Aquí se explica que hace el recurso
  * con varias lineas
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/plantilla/{Tipo:parametro_get}
+ * https://quehaypahacer.nabu.com.co/api/plantilla/{Tipo:parametro_get}
  * 
  * @apiParam {string} Parametro Parametro (POST|PUT|DELECT) en la petición.
  * 
@@ -52,10 +52,10 @@ Route::get("/", function() {
  * @apiGroup Usuarios
  * @apiDescription Optener Todos los usuarios registrados, usando el token para saber que es un
  * usuario logeado, y autorizado para acceder a ese recurso
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/usuarios
+ * https://quehaypahacer.nabu.com.co/api/usuarios
  * 
  * 
  * @apiSuccessExample Success-Response:
@@ -74,7 +74,7 @@ Route::get("/", function() {
  *      }
  *     ]
  *
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/usuarios
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/usuarios
  * 
  * @apiError 500 Error interno.
  *
@@ -84,23 +84,27 @@ Route::get("/", function() {
  * @apiGroup Usuarios
  * @apiDescription Ruta para registrar un usuario en sistema para posteriormente hacer
  * login y optener un token
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/usuarios
+ * https://quehaypahacer.nabu.com.co/api/usuarios
  * 
  * @apiParam {string} nombre MaxLength:190
  * @apiParam {string} apellido MaxLength:190
- * @apiParam {string} cedula MaxLength:50 **Unique**
+ * @apiParam {string} cedula MaxLength:50 **Unique** **Required**
  * @apiParam {date} fecha_nacimiento format("YYYY-MM-DD")
- * @apiParam {string} sexo permitidos: "Hombre", "Mujer"
+ * @apiParam {string} sexo permitidos: "Hombre", "Mujer" **Required**
  * @apiParam {string} telefono MaxLength:50
- * @apiParam {string} movil MaxLength:50 **Unique**
- * @apiParam {string} email MaxLength:190 **Unique**
- * @apiParam {string} user MaxLength:100 **Unique**
+ * @apiParam {string} movil MaxLength:50
+ * @apiParam {string} email MaxLength:190 **Unique** **Required**
+ * @apiParam {string} user MaxLength:100
  * @apiParam {string} pass MaxLength:190
- * @apiParam {string} longitud MaxLength:190 Opcional
- * @apiParam {string} latitud MaxLength:190 Opcional
+ * @apiParam {string} longitud MaxLength:190
+ * @apiParam {string} latitud MaxLength:190
+ * @apiParam {string} latitud MaxLength:190
+ * @apiParam {string} foto MaxLength:190 Foto para usarla de perfil
+ * @apiParam {string} userID MaxLength:190 ID de la red social en la que se logeo
+ * @apiParam {string} tipoAutenticacion "FB"=FaceBook, "IG"=Instagram, "TW"=Twiter
  * 
  * @apiSuccess {Number} ID
  * @apiSuccess {string} nombre
@@ -112,7 +116,10 @@ Route::get("/", function() {
  * @apiSuccess {string} movil
  * @apiSuccess {string} email
  * @apiSuccess {DateTime} Created_at Format("YYYY-MM-DD HH:ii:ss")
- * @apiSuccess {DateTime} Updated_at
+ * @apiSuccess {DateTime} Updated_at Format("YYYY-MM-DD HH:ii:ss")
+ * @apiSuccess {string} foto 
+ * @apiSuccess {string} tipoAutenticacions
+ * 
  * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -120,7 +127,6 @@ Route::get("/", function() {
  *      "id":1,
  *      "created_at":"2017-06-14 00:00:00",
  *      "updated_at":"2017-06-23 00:00:00",
- *      "user":"LuisPlata",
  *      "nombre":"Luis Enrique",
  *      "apellido":"Plata Osorio",
  *      "cedula":"1143346134",
@@ -128,10 +134,12 @@ Route::get("/", function() {
  *      "sexo":"Hombre",
  *      "telefono":"56510386",
  *      "movil":"3015086264",
- *      "email":"www.luisplata@gmail.com"
+ *      "email":"www.luisplata@gmail.com",
+ *      "foto":"https://servidor.com/fotoDePerfil",
+ *      "tipoAutenticacion":"FB"
  *      }
  *
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/usuarios
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/usuarios
  * 
  * @apiError 500 Error Interno.
  * @apiError 501 ErrorDeParametros Usualmente relacionado por ingresar datos de una 
@@ -146,10 +154,10 @@ Route::resource("/usuarios", "UsuariosController");
  * @apiGroup Usuarios
  * @apiDescription Ingresas la ID de la persona que quieres modificar y el token 
  * que te valide como usuario logeado
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff
+ * https://quehaypahacer.nabu.com.co/api/usuarios/144?token=bcabjciasjbcioahbcu546%&fdff
  * 
  * @apiParam {string} nombre
  * @apiParam {string} apellido
@@ -209,10 +217,10 @@ Route::resource("/usuarios", "UsuariosController");
  * @apiGroup Usuarios
  * @apiDescription Se ingresa la id del usuario que deseamos obtener, y el token
  * que nos valide como usuario logrado
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/usuarios/854?token=ddffef&fsfdsf/ffdsf
+ * https://quehaypahacer.nabu.com.co/api/usuarios/854?token=ddffef&fsfdsf/ffdsf
  *
  * @apiSuccess {Number} ID
  * @apiSuccess {string} nombre
@@ -251,10 +259,10 @@ Route::resource("/usuarios", "UsuariosController");
  * @apiGroup Usuarios
  * @apiDescription Manda la id del usuario que deseamos eliminar del sistema
  * y el token que nos válida como usuario logeado
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  *
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/usuarios/357?token=ddffef&fsfdsf/ffdsf
+ * https://quehaypahacer.nabu.com.co/api/usuarios/357?token=ddffef&fsfdsf/ffdsf
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -272,10 +280,10 @@ Route::resource("/usuarios", "UsuariosController");
  * @api {POST} /api/login Login de aplicacion
  * @apiGroup Usuarios
  * @apiDescription login del usuario para obtener su token de sesión
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/login
+ * https://quehaypahacer.nabu.com.co/api/login
  *
  * @apiParam {String} user usuario resgistrado en sistema
  * @apiParam {String} pass constraseña del usuario
@@ -310,7 +318,7 @@ Route::resource("/usuarios", "UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/login
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/login
  * 
  * @apiError 500 Error interno.
  * @apiError 404 Usuario no encontrado.
@@ -324,10 +332,10 @@ Route::post("login", "UsuariosController@login");
  * @apiGroup Sitios
  * @apiDescription Se crea un sitio para el listado. Para esto es necesario mandar token
  * Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/sitio
+ * https://quehaypahacer.nabu.com.co/api/sitio
  * 
  * @apiParam {string} nombre maxlength:190 required *not null*
  * @apiParam {text} descripcion maxlength:5000 *opcional*
@@ -354,7 +362,7 @@ Route::post("login", "UsuariosController@login");
  *          updated_at:"2017-06-27 20:00:00"
  *      }
  * 
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/sitio
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/sitio
  * 
  * @apiError 401 Validación fallida
  * @apiError 500 Error interno
@@ -365,10 +373,10 @@ Route::post("login", "UsuariosController@login");
  * @api {GET} /api/sitio Obtener todos los sitios
  * @apiGroup Sitios
  * @apiDescription Listado de todos los sitios registrados
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/sitio
+ * https://quehaypahacer.nabu.com.co/api/sitio
  * 
  * @apiSuccess {string} nombre nombre del sitio
  * @apiSuccess {string} descripcion Descripción del sitio
@@ -388,7 +396,7 @@ Route::post("login", "UsuariosController@login");
  *      }
  * ]
  * 
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/sitio
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/sitio
  *  
  * @apiUse db
  */
@@ -397,10 +405,10 @@ Route::post("login", "UsuariosController@login");
  * @apiGroup Sitios
  * @apiDescription Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y
  * su ultima modificacion
- * @apiVersion 0.1.1
+ * @apiVersion 0.1.2
  * 
  * @apiExample Ejemplo de Uso:
- * http://quehaypahacer.nabu.com.co/api/sitio/1
+ * https://quehaypahacer.nabu.com.co/api/sitio/1
  * 
  * @apiSuccess {string} nombre nombre del sitio
  * @apiSuccess {string} descripcion Descripción del sitio
@@ -422,7 +430,7 @@ Route::post("login", "UsuariosController@login");
  *              created_at:"2017-06-30 00:07:35"
  *          }
  * 
- * @apiSampleRequest http://quehaypahacer.nabu.com.co/api/sitio/1
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/sitio/1
  * 
  * @apiError 404 Sitio no existe.
  * 

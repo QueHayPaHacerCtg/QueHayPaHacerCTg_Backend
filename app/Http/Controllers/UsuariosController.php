@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller {
 
@@ -16,11 +17,11 @@ class UsuariosController extends Controller {
     public function index(Request $request) {
         //optener los usuarios
         /*
-        if (!User::validarToken($request->token)) {
-            //no tiene un token valido lo mandamos a la mierda
-            return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
-        }
-        */
+          if (!User::validarToken($request->token)) {
+          //no tiene un token valido lo mandamos a la mierda
+          return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
+          }
+         */
         Log:info("Piden todos los usuarios");
         return response()->json(User::getAll());
     }
@@ -43,9 +44,29 @@ class UsuariosController extends Controller {
      */
     public function store(Request $request) {
         //Creacion del usuario
-        
-        $usuario = User::crearUsuario($request);    
-        return response()->json($usuario);
+
+        $usuario = new User();
+        $usuario->user = $request->user;
+        $usuario->pass = Hash::make($request->pass);
+        $usuario->longitud = $request->longitud;
+        $usuario->latitud = $request->latitud;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->cedula = $request->cedula;
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->sexo = $request->sexo;
+        $usuario->telefono = $request->telefono;
+        $usuario->movil = $request->movil;
+        $usuario->email = $request->email;
+        $usuario->tipoAutenticacion = $request->tipoAutenticacion;
+        $usuario->userID = $request->userID;
+        $usuario->foto = $request->foto;
+        //lo creamos
+        if ($usuario->save()) {
+            return response()->json($usuario);
+        } else {
+            return response()->json("No se creo el usuario correctamente", 502);
+        }
     }
 
     /**
@@ -125,7 +146,16 @@ class UsuariosController extends Controller {
     }
 
     public function login(Request $request) {
-        $respuesta = User::autenticar($request->user, $request->pass);
+        
+        switch ($request->tipoAutenticacion){
+            case "FB":
+                $respuesta = User::autenticarFB($request->userID);
+                break;
+            default :
+                $respuesta = User::autenticar($request->user, $request->pass);
+                break;
+        }
+        
         if ($respuesta) {
             //Login correcto
             return response()->json($respuesta);
