@@ -104,7 +104,7 @@ Route::get("/", function() {
  * @apiParam {string} latitud MaxLength:190
  * @apiParam {string} foto MaxLength:190 Foto para usarla de perfil
  * @apiParam {string} userID MaxLength:190 ID de la red social en la que se logeo
- * @apiParam {string} tipoAutenticacion "FB"=FaceBook, "IG"=Instagram, "TW"=Twiter
+ * @apiParam {string} tipoAutenticacion "FB"=FaceBook, "IG"=Instagram, "TW"=Twiter, ""=Normal
  * 
  * @apiSuccess {Number} ID
  * @apiSuccess {string} nombre

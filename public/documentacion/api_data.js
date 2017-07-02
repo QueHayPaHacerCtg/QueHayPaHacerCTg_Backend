@@ -2453,7 +2453,7 @@ define({ "api": [
             "type": "string",
             "optional": false,
             "field": "tipoAutenticacion",
-            "description": "<p>&quot;FB&quot;=FaceBook, &quot;IG&quot;=Instagram, &quot;TW&quot;=Twiter</p>"
+            "description": "<p>&quot;FB&quot;=FaceBook, &quot;IG&quot;=Instagram, &quot;TW&quot;=Twiter, &quot;&quot;=Normal</p>"
           }
         ]
       }
