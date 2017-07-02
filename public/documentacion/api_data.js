@@ -1249,6 +1249,11 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
@@ -1619,6 +1624,11 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [
@@ -3257,6 +3267,11 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}"
+      }
+    ],
     "error": {
       "fields": {
         "Error 4xx": [

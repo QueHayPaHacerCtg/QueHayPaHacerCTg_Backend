@@ -185,6 +185,16 @@ function sitio(id) {
     });
 }
 
+function obtenerUnUsuario(id, token) {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/usuarios/" + id + "?token=" + token
+    }).done(function (msg) {
+        console.log(msg);
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
         </script>
     </body>
 </html>

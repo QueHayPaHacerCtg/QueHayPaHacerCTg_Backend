@@ -205,6 +205,8 @@ Route::resource("/usuarios", "UsuariosController");
  *      "movil":"3015086264",
  *      "email":"www.luisplata@gmail.com"
  *      }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}
  *
  * @apiError UsuarioNoEncontrado El usuario que desea modificar no existe <code>404</code>
  * @apiError UsuarioNoActualizado El usuario que desea modificar no es modificable <code>501</code>
@@ -249,6 +251,8 @@ Route::resource("/usuarios", "UsuariosController");
  *      "email":"www.luisplata@gmail.com"
  *      }
  *
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}
+ * 
  * @apiError UsuarioNoEncontrado Código <code>404</code> no encontró el usuario
  * @apiError TokenNoValido El token suministrado no es valido <code>403</code>
  * @apiError InternalError error con código <code>500</code>
@@ -270,6 +274,8 @@ Route::resource("/usuarios", "UsuariosController");
  *          "Usuario Eliminado"
  *      }
  *
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/usuarios/1?token={token}
+ * 
  * @apiError InternalError Error interno<code>500</code>.
  * @apiError UsuarioNoEncontrado El usuario a eliminar no fue encontrado <code>404</code>.
  * @apiError TokenInvalido El token suministrado no es válido <code>403</code>.

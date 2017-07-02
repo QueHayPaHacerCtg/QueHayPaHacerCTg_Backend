@@ -77,6 +77,7 @@ class UsuariosController extends Controller {
      */
     public function show(Request $request, $id) {
         //
+        //return response()->json($request);
         if (!User::validarToken($request->token)) {
             //no tiene un token valido lo mandamos a la mierda
             return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
@@ -130,13 +131,13 @@ class UsuariosController extends Controller {
      */
     public function destroy(Request $request, $id) {
         //
-        $user = User::find($id);
-        if (!is_object($user)) {
-            return response()->json("Usuario no encontrado", 404);
-        }
         if (!User::validarToken($request->token)) {
             //no tiene un token valido lo mandamos a la mierda
             return response()->json("Token no valido, vuelve a iniciar sesion para obtener uno nuevo", 403);
+        }
+        $user = User::find($id);
+        if (!is_object($user)) {
+            return response()->json("Usuario no encontrado", 404);
         }
         if (User::destroy($id)) {
             return response()->json("Usuario Eliminado con exito");
