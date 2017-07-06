@@ -449,7 +449,7 @@ Route::resource("sitio", "SitioController");
     //Route::resource("persona","PersonaController");
 //});
 /**
- * @api {POST} /api/reservar?token={Token_de_session} Reserva de un evento
+ * @api {POST} /api/reservar?token={Token_de_session} Reserva de un sitio
  * @apiGroup Reservas
  * @apiDescription Cuando un usuario desea reservar, debe tener seleccionado el
  * sitio y su id, y mandarlo junto a su token de session, mandando datos como

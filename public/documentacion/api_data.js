@@ -242,7 +242,7 @@ define({ "api": [
   {
     "type": "POST",
     "url": "/api/reservar?token={Token_de_session}",
-    "title": "Reserva de un evento",
+    "title": "Reserva de un sitio",
     "group": "Reservas",
     "description": "<p>Cuando un usuario desea reservar, debe tener seleccionado el sitio y su id, y mandarlo junto a su token de session, mandando datos como cantidad de personas, y la fecha de la reserva.</p>",
     "version": "0.1.0",
