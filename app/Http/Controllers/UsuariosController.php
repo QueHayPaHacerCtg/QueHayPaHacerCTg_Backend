@@ -47,7 +47,6 @@ class UsuariosController extends Controller {
 
         $usuario = new User();
         $usuario->user = $request->user;
-        $usuario->pass = Hash::make($request->pass);
         $usuario->longitud = $request->longitud;
         $usuario->latitud = $request->latitud;
         $usuario->nombre = $request->nombre;
@@ -61,6 +60,12 @@ class UsuariosController extends Controller {
         $usuario->tipoAutenticacion = $request->tipoAutenticacion;
         $usuario->userID = $request->userID;
         $usuario->foto = $request->foto;
+        
+        //Validando que cuando sea solamente un registro normal se guarde la pass
+        if($request->tipoAutenticacion == ""){
+            $usuario->pass = Hash::make($request->pass);
+        }
+        
         //lo creamos
         if ($usuario->save()) {
             return response()->json($usuario);

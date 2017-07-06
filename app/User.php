@@ -9,7 +9,7 @@ class User extends Model {
 
     protected $table = "usuarios";
     //datos ocultos
-    protected $hidden = ['pass', "longitud", "latitud","userID","user"];
+    protected $hidden = ['pass', "longitud", "latitud", "userID", "user"];
 
     public static function getAll() {
         return User::select(
@@ -18,6 +18,18 @@ class User extends Model {
                         ->get();
     }
 
+    public static function getByToken($token) {
+        $token = str_replace("\\", "", $token);
+        $usuario = User::where("token", $token)->first();
+        if (is_object($usuario)) {
+            //Es porque es valido
+            return $usuario;
+        } else {
+            //no es un token valido
+            return FALSE;
+        }
+    }
+    
     public static function validarToken($token) {
         $token = str_replace("\\", "", $token);
         $usuario = User::where("token", $token)->first();

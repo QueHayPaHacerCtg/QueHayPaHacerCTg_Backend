@@ -285,14 +285,16 @@ Route::resource("/usuarios", "UsuariosController");
 /**
  * @api {POST} /api/login Login de aplicacion
  * @apiGroup Usuarios
- * @apiDescription login del usuario para obtener su token de sesión
- * @apiVersion 0.1.2
+ * @apiDescription login del usuario para obtener su token de sesión. Al momento 
+ * @apiVersion 0.1.3
  * 
  * @apiExample Ejemplo de Uso:
  * https://quehaypahacer.nabu.com.co/api/login
  *
  * @apiParam {String} user usuario resgistrado en sistema
  * @apiParam {String} pass constraseña del usuario
+ * @apiParam {String} userID UsuarioID si fue registrado por FaceBook **Solo se coloca si se registro por red Social**
+ * @apiParam {String} tipoAutenticacion "FB"=FaceBook ; "IG" **Solo se coloca si se registro por red Social**
  *
  * @apiSuccess {String} Token token de la sesión
  * @apiSuccess {Integer} id
@@ -446,3 +448,35 @@ Route::resource("sitio", "SitioController");
 //Route::group(['middleware' => 'tokenValido'], function () {
     //Route::resource("persona","PersonaController");
 //});
+/**
+ * @api {POST} /api/reservar?token={Token_de_session} Reserva de un evento
+ * @apiGroup Reservas
+ * @apiDescription Cuando un usuario desea reservar, debe tener seleccionado el
+ * sitio y su id, y mandarlo junto a su token de session, mandando datos como
+ * cantidad de personas, y la fecha de la reserva.
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/reservar?token=3322nj2n43i2432n4ko23n
+ * 
+ * @apiParam {Numbre} sitio_id **Required**
+ * @apiParam {Number} cantidadPersonas **Default = 1**
+ * @apiParam {Date} fecha **Required** | **formato("YYYY-MM-DD")**
+ * 
+ * @apiSuccess {string} numeroDeReserva numero de la reserva.
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          "numeroDeReserva":28878
+ *      }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/reservar?token=3322nj2n43i2432n4ko23n
+ * 
+ * @apiError 403 Token no válido.
+ * @apiError 404 Sitio no existe.
+ * @apiError 420 Fecha menor a la actual
+ * 
+ * @apiUse db
+ */
+Route::post("reservar", "ReservaController@reservar");

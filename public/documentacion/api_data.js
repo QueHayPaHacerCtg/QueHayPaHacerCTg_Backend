@@ -240,6 +240,106 @@ define({ "api": [
     "name": "MethodApiPlantilla"
   },
   {
+    "type": "POST",
+    "url": "/api/reservar?token={Token_de_session}",
+    "title": "Reserva de un evento",
+    "group": "Reservas",
+    "description": "<p>Cuando un usuario desea reservar, debe tener seleccionado el sitio y su id, y mandarlo junto a su token de session, mandando datos como cantidad de personas, y la fecha de la reserva.</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/reservar?token=3322nj2n43i2432n4ko23n",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Numbre",
+            "optional": false,
+            "field": "sitio_id",
+            "description": "<p><strong>Required</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "cantidadPersonas",
+            "description": "<p><strong>Default = 1</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "fecha",
+            "description": "<p><strong>Required</strong> | <strong>formato(&quot;YYYY-MM-DD&quot;)</strong></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "numeroDeReserva",
+            "description": "<p>numero de la reserva.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"numeroDeReserva\":28878\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/reservar?token=3322nj2n43i2432n4ko23n"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Token no válido.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sitio no existe.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "420",
+            "description": "<p>Fecha menor a la actual</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Reservas",
+    "name": "PostApiReservarTokenToken_de_session"
+  },
+  {
     "type": "GET",
     "url": "/api/sitio",
     "title": "Obtener todos los sitios",
@@ -1898,6 +1998,170 @@ define({ "api": [
     "url": "/api/login",
     "title": "Login de aplicacion",
     "group": "Usuarios",
+    "description": "<p>login del usuario para obtener su token de sesión. Al momento</p>",
+    "version": "0.1.3",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/login",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user",
+            "description": "<p>usuario resgistrado en sistema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "pass",
+            "description": "<p>constraseña del usuario</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>UsuarioID si fue registrado por FaceBook <strong>Solo se coloca si se registro por red Social</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tipoAutenticacion",
+            "description": "<p>&quot;FB&quot;=FaceBook ; &quot;IG&quot; <strong>Solo se coloca si se registro por red Social</strong></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Token",
+            "description": "<p>token de la sesión</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "apellido",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "cedula",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "date",
+            "optional": false,
+            "field": "fecha_nacimiento",
+            "description": "<p>format(&quot;YYYY-MM-DD&quot;)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "sexo",
+            "description": "<p>permitidos: &quot;Hombre&quot;, &quot;Mujer&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "telefono",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "movil",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"token\":\"tokenDeSession\",\n \"id\":1,\n \"created_at\":\"2017-06-14 00:00:00\",\n \"updated_at\":\"2017-06-23 00:00:00\",\n \"user\":\"LuisPlata\",\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/login"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Error interno.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Usuario no encontrado.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Contraseña invalida.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Usuarios",
+    "name": "PostApiLogin"
+  },
+  {
+    "type": "POST",
+    "url": "/api/login",
+    "title": "Login de aplicacion",
+    "group": "Usuarios",
     "description": "<p>login del usuario para obtener su token de sesión</p>",
     "version": "0.1.2",
     "examples": [
@@ -2039,7 +2303,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "routes/api.php",
+    "filename": "routes/historial.php",
     "groupTitle": "Usuarios",
     "name": "PostApiLogin"
   },
