@@ -1,5 +1,274 @@
 define({ "api": [
   {
+    "type": "DELETE",
+    "url": "/api/evento/{Number:ID}?token=$58c78c78c78d6cd67cd79",
+    "title": "Eliminar un evento",
+    "group": "Eventos",
+    "description": "<p>Cuando se quiera eliminar un evento se manda la id y el token del usuario para poder eliminarlo</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/evento/1?token=$7df7d7df78df78df78df78df",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "mensaje",
+            "description": "<p>Mensaje de la aplicación</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"mensaje\":\"El evento se eliminó con éxito.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/evento/1?token=$7df7d7df78df78df78df78df"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Codigo1",
+            "description": "<p>Descripcion <code>4xx</code> y una corta explicación.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Codigo2",
+            "description": "<p>Descripcion <code>4xx</code> y una explicación.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Eventos",
+    "name": "DeleteApiEventoNumberIdToken58c78c78c78d6cd67cd79"
+  },
+  {
+    "type": "GET",
+    "url": "/api/evento?token=$678687697698ghbb7687h87877g",
+    "title": "Listar Todos los eventos",
+    "group": "Eventos",
+    "description": "<p>Listado de todos los eventos</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/evento?token=$678687697698ghbb7687h87877g",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "Array",
+            "description": "<p>Array de eventos</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n[\n       {\n           \"id\": 2,\n           \"created_at\": \"2017-07-11 04:02:13\",\n           \"updated_at\": \"2017-07-11 04:02:13\",\n           \"nombre\": \"1\",\n           \"descripcion\": \"2\",\n           \"estado\": \"abierto\",\n           \"cover\": \"3\",\n           \"sitios_id\": 1,\n           \"categorias_id\": 2,\n           \"fecha_hora_inicio\": \"1990-11-10 17:15:00\",\n           \"fecha_hora_final\": \"1990-11-10 22:00:00\",\n           \"tipo\": \"4\"\n       }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/evento?token=$678687697698ghbb7687h87877g"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Token no valido.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Eventos",
+    "name": "GetApiEventoToken678687697698ghbb7687h87877g"
+  },
+  {
+    "type": "POST",
+    "url": "/api/evento?token=$/%GBBIBI%&T&/G/&/%F/",
+    "title": "Creación de un evento",
+    "group": "Eventos",
+    "description": "<p>Cuando se desea crear un evento</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/evento?token=$hbiknjo_uuijniubijn",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p><strong>MaxLength:190</strong> | <strong>Reqired</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p><strong>MaxLength:5000</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "cover",
+            "description": "<p><strong>MaxLength:190</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "tipo",
+            "description": "<p><strong>MaxLength:190</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "dateTime",
+            "optional": false,
+            "field": "fecha_hora_inicio",
+            "description": "<p><strong>Required</strong> | <em>formar('YYYY-mm-dd HH:ii:ss')</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "dateTime",
+            "optional": false,
+            "field": "fecha_hora_final",
+            "description": "<p><strong>Required</strong> | <em>formar('YYYY-mm-dd HH:ii:ss')</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "sitio_id",
+            "description": "<p><strong>Required</strong> | <strong>Unique</strong> | <strong>Foreing_key</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "categoria_id",
+            "description": "<p><strong>Required</strong> | <strong>Unique</strong> | <strong>Foreing_key</strong></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "mensaje",
+            "description": "<p>Mensaje de exito o error</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"mensaje\":\"Se agrego el evento de forma exitosa\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/evento?token=$hbiknjo_uuijniubijn"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Token no valido</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "422",
+            "description": "<p>Error en las validaciones.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "502",
+            "description": "<p>Error de DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "504",
+            "description": "<p>No se guardo el evento por error interno</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Eventos",
+    "name": "PostApiEventoTokenGbbibiTGF"
+  },
+  {
     "type": "Method",
     "url": "/api/plantilla/",
     "title": "Plantilla para la documentación",
@@ -1999,6 +2268,177 @@ define({ "api": [
     "title": "Login de aplicacion",
     "group": "Usuarios",
     "description": "<p>login del usuario para obtener su token de sesión. Al momento</p>",
+    "version": "0.1.4",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/login",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user",
+            "description": "<p>usuario resgistrado en sistema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "pass",
+            "description": "<p>constraseña del usuario</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>UsuarioID si fue registrado por FaceBook <strong>Solo se coloca si se registro por red Social</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tipoAutenticacion",
+            "description": "<p>&quot;FB&quot;=FaceBook ; &quot;IG&quot; <strong>Solo se coloca si se registro por red Social</strong></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Token",
+            "description": "<p>token de la sesión</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "apellido",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "cedula",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "date",
+            "optional": false,
+            "field": "fecha_nacimiento",
+            "description": "<p>format(&quot;YYYY-MM-DD&quot;)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "sexo",
+            "description": "<p>permitidos: &quot;Hombre&quot;, &quot;Mujer&quot;</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "telefono",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "movil",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "tipoAutenticacion",
+            "description": "<p>&quot;FB&quot;, &quot;IG&quot;, &quot;TW&quot;</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"token\":\"tokenDeSession\",\n \"id\":1,\n \"created_at\":\"2017-06-14 00:00:00\",\n \"updated_at\":\"2017-06-23 00:00:00\",\n \"user\":\"LuisPlata\",\n \"nombre\":\"Luis Enrique\",\n \"apellido\":\"Plata Osorio\",\n \"cedula\":\"1143346134\",\n \"fecha_nacimiento\":\"1990-11-10\",\n \"sexo\":\"Hombre\",\n \"telefono\":\"56510386\",\n \"movil\":\"3015086264\",\n \"email\":\"www.luisplata@gmail.com\",\n \"tipoAutenticacion\": \"FB\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/login"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Error interno.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Usuario no encontrado.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Contraseña invalida.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Usuarios",
+    "name": "PostApiLogin"
+  },
+  {
+    "type": "POST",
+    "url": "/api/login",
+    "title": "Login de aplicacion",
+    "group": "Usuarios",
+    "description": "<p>login del usuario para obtener su token de sesión. Al momento</p>",
     "version": "0.1.3",
     "examples": [
       {
@@ -2153,7 +2593,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "routes/api.php",
+    "filename": "routes/historial.php",
     "groupTitle": "Usuarios",
     "name": "PostApiLogin"
   },

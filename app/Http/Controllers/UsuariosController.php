@@ -164,7 +164,9 @@ class UsuariosController extends Controller {
         
         if ($respuesta) {
             //Login correcto
-            return response()->json($respuesta);
+            //Buscamos al usuario para dovolverlo
+            $usuario = User::getByToken($respuesta);
+            return response()->json($usuario);
         } else {
             //error de autenticar
             return response()->json("Error de autenticacion", 403);

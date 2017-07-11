@@ -868,3 +868,56 @@
  * @apiError 403 Contraseña invalida.
  *
  */
+
+
+/**
+ * @api {POST} /api/login Login de aplicacion
+ * @apiGroup Usuarios
+ * @apiDescription login del usuario para obtener su token de sesión. Al momento 
+ * @apiVersion 0.1.3
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/login
+ *
+ * @apiParam {String} user usuario resgistrado en sistema
+ * @apiParam {String} pass constraseña del usuario
+ * @apiParam {String} userID UsuarioID si fue registrado por FaceBook **Solo se coloca si se registro por red Social**
+ * @apiParam {String} tipoAutenticacion "FB"=FaceBook ; "IG" **Solo se coloca si se registro por red Social**
+ *
+ * @apiSuccess {String} Token token de la sesión
+ * @apiSuccess {Integer} id
+ * @apiSuccess {string} nombre
+ * @apiSuccess {string} apellido
+ * @apiSuccess {string} cedula
+ * @apiSuccess {date} fecha_nacimiento format("YYYY-MM-DD")
+ * @apiSuccess {string} sexo permitidos: "Hombre", "Mujer"
+ * @apiSuccess {string} telefono
+ * @apiSuccess {string} movil
+ * @apiSuccess {string} email
+
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *      "token":"tokenDeSession",
+ *      "id":1,
+ *      "created_at":"2017-06-14 00:00:00",
+ *      "updated_at":"2017-06-23 00:00:00",
+ *      "user":"LuisPlata",
+ *      "nombre":"Luis Enrique",
+ *      "apellido":"Plata Osorio",
+ *      "cedula":"1143346134",
+ *      "fecha_nacimiento":"1990-11-10",
+ *      "sexo":"Hombre",
+ *      "telefono":"56510386",
+ *      "movil":"3015086264",
+ *      "email":"www.luisplata@gmail.com"
+ *      }
+ *
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/login
+ * 
+ * @apiError 500 Error interno.
+ * @apiError 404 Usuario no encontrado.
+ * @apiError 403 Contraseña invalida.
+ *
+ */

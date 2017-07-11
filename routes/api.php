@@ -286,7 +286,7 @@ Route::resource("/usuarios", "UsuariosController");
  * @api {POST} /api/login Login de aplicacion
  * @apiGroup Usuarios
  * @apiDescription login del usuario para obtener su token de sesión. Al momento 
- * @apiVersion 0.1.3
+ * @apiVersion 0.1.4
  * 
  * @apiExample Ejemplo de Uso:
  * https://quehaypahacer.nabu.com.co/api/login
@@ -306,6 +306,7 @@ Route::resource("/usuarios", "UsuariosController");
  * @apiSuccess {string} telefono
  * @apiSuccess {string} movil
  * @apiSuccess {string} email
+ * @apiSuccess {string} tipoAutenticacion "FB", "IG", "TW"
 
  *
  * @apiSuccessExample Success-Response:
@@ -323,7 +324,8 @@ Route::resource("/usuarios", "UsuariosController");
  *      "sexo":"Hombre",
  *      "telefono":"56510386",
  *      "movil":"3015086264",
- *      "email":"www.luisplata@gmail.com"
+ *      "email":"www.luisplata@gmail.com",
+ *      "tipoAutenticacion": "FB"
  *      }
  *
  * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/login
@@ -446,7 +448,7 @@ Route::post("login", "UsuariosController@login");
  */
 Route::resource("sitio", "SitioController");
 //Route::group(['middleware' => 'tokenValido'], function () {
-    //Route::resource("persona","PersonaController");
+//Route::resource("persona","PersonaController");
 //});
 /**
  * @api {POST} /api/reservar?token={Token_de_session} Reserva de un sitio
@@ -480,3 +482,101 @@ Route::resource("sitio", "SitioController");
  * @apiUse db
  */
 Route::post("reservar", "ReservaController@reservar");
+/**
+ * @api {POST} /api/evento?token=$/%GBBIBI%&T&/G/&/%F/ Creación de un evento
+ * @apiGroup Eventos
+ * @apiDescription Cuando se desea crear un evento
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/evento?token=$hbiknjo_uuijniubijn
+ * 
+ * @apiParam {string} nombre **MaxLength:190** | **Reqired**
+ * @apiParam {string} descripcion **MaxLength:5000**
+ * @apiParam {string} cover **MaxLength:190**
+ * @apiParam {string} tipo **MaxLength:190**
+ * @apiParam {dateTime} fecha_hora_inicio **Required** | _formar('YYYY-mm-dd HH:ii:ss')_
+ * @apiParam {dateTime} fecha_hora_final **Required** | _formar('YYYY-mm-dd HH:ii:ss')_
+ * @apiParam {Number} sitio_id **Required** | **Unique** | **Foreing_key**
+ * @apiParam {Number} categoria_id **Required** | **Unique** | **Foreing_key**
+ * 
+ * 
+ * @apiSuccess {string} mensaje Mensaje de exito o error
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          "mensaje":"Se agrego el evento de forma exitosa"
+ *      }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/evento?token=$hbiknjo_uuijniubijn
+ * 
+ * @apiError 403 Token no valido
+ * @apiError 422 Error en las validaciones.
+ * @apiError 502 Error de DB
+ * @apiError 504 No se guardo el evento por error interno
+ * 
+ * @apiUse db
+ */
+/**
+ * @api {GET} /api/evento?token=$678687697698ghbb7687h87877g Listar Todos los eventos
+ * @apiGroup Eventos
+ * @apiDescription Listado de todos los eventos
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/evento?token=$678687697698ghbb7687h87877g 
+ * 
+ * @apiSuccess {Array} Array Array de eventos
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      [
+            {
+                "id": 2,
+                "created_at": "2017-07-11 04:02:13",
+                "updated_at": "2017-07-11 04:02:13",
+                "nombre": "1",
+                "descripcion": "2",
+                "estado": "abierto",
+                "cover": "3",
+                "sitios_id": 1,
+                "categorias_id": 2,
+                "fecha_hora_inicio": "1990-11-10 17:15:00",
+                "fecha_hora_final": "1990-11-10 22:00:00",
+                "tipo": "4"
+            }
+ *      ]
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/evento?token=$678687697698ghbb7687h87877g
+ * 
+ * @apiError 403 Token no valido.
+ * 
+ * @apiUse db
+ */
+/**
+ * @api {DELETE} /api/evento/{Number:ID}?token=$58c78c78c78d6cd67cd79 Eliminar un evento
+ * @apiGroup Eventos
+ * @apiDescription Cuando se quiera eliminar un evento se manda la id y el token
+ * del usuario para poder eliminarlo
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/evento/1?token=$7df7d7df78df78df78df78df
+ * 
+ * @apiSuccess {string} mensaje Mensaje de la aplicación
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          "mensaje":"El evento se eliminó con éxito."
+ *      }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/evento/1?token=$7df7d7df78df78df78df78df
+ * 
+ * @apiError Codigo1 Descripcion <code>4xx</code> y una corta explicación.
+ * @apiError Codigo2 Descripcion <code>4xx</code> y una explicación.
+ * 
+ * @apiUse db
+ */
+Route::resource("evento", "EventoController");
