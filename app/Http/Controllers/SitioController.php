@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sitio;
+use App\Categorias_sitios;
+
 
 class SitioController extends Controller
 {
@@ -37,6 +39,8 @@ class SitioController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         //Registro de sitios
         try {
             $sitio = new Sitio();
@@ -44,12 +48,25 @@ class SitioController extends Controller
             $sitio->descripcion = $request->descripcion;
             $sitio->latitud = $request->latitud;
             $sitio->longitud = $request->longitud;
+
+            
+
+
             
             if($this->validate($request, $sitio->validacion)){
                 return response()->json("Validación fallida",401);
             }
             if($sitio->save()){
-                return response()->json($sitio);
+
+                
+
+                if(Categorias_sitios::crear($request->id_categoria, $sitio->id)){
+                    return response()->json($sitio);
+                }else{
+                    $sitio->delete();
+                    return response()->json("No se pudo registrar",501);
+                }
+                
             }else{
                 return response()->json("No se pudo registrar",501);
             }

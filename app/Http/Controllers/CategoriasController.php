@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Categoria;
+use App\Categorias_sitios;
 
 class CategoriasController extends Controller
 {
@@ -71,10 +72,13 @@ class CategoriasController extends Controller
             return response()->json("No enviaste una ID",403);
         }
         $categoria = Categoria::find($id);
+        $sitios_cat = Categorias_sitios::getSitiosDeCategoria($id);
+        
         if(!is_object($categoria)){
             return response()->json("Categoria no existe",404);
         }
-        return response()->json($categoria);
+        $res = array("categoria" => $categoria , "sitios" => $sitios_cat);
+        return response()->json($res);
     }
 
     /**

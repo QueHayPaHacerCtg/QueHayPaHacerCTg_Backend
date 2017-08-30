@@ -18,5 +18,7 @@ class Categoria extends Model
                 "descripcion",
                 "id"
                 )->get();
-    }  
+    }
+
+    
 }

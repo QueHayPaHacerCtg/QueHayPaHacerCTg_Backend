@@ -30,4 +30,11 @@ class Categorias_sitios extends Model
         }
     }
 
+    public static function getSitiosDeCategoria($idcategoria){
+        return Categorias_sitios::where(["categorias_id"=>$idcategoria])
+                        ->join("sitios", "sitios.id", "=", "categorias_sitios.categorias_id")
+                        ->select("sitios.*")
+                        ->get();
+    }  
+
 }

@@ -11,7 +11,8 @@ class Sitio extends Model {
         "nombre" => array("required","max:190"),
         "descripcion" => "max:5000",
         "latitud" => "max:190",
-        "longitud" => "max:190"
+        "longitud" => "max:190",
+        "id_categoria" => "max:10"
     ];
     
     public static function getAll(){

@@ -74,7 +74,7 @@
     "title": "Obtener una categoria",
     "group": "Categorias",
     "description": "<p>Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y su ultima modificacion</p>",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "examples": [
       {
         "title": "Ejemplo de Uso:",
@@ -119,13 +119,20 @@
             "optional": false,
             "field": "Updated_at",
             "description": "<p>fecha de su ultima actualizacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string[]",
+            "optional": false,
+            "field": "sitios",
+            "description": "<p>Listado de sitios asociados a la categoria</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Ejemplo de Éxito:",
-          "content": "HTTP/1.1 200 OK\n    {\n        descripcion:\"Plazuela\",\n        nombre:\"Sao\",\n        id:1,\n        updated_at:\"2017-06-30 00:07:35\",\n        created_at:\"2017-06-30 00:07:35\"\n    }",
+          "content": "     HTTP/1.1 200 OK\n         {\n \t\t\t\t\"categoria\": {\n \t\t\t\t      \"id\": 1,\n \t\t\t\t      \"created_at\": \"2017-08-30 18:25:24\",\n \t\t\t\t      \"updated_at\": \"2017-08-30 18:25:24\",\n \t\t\t\t      \"nombre\": \"Vida Nocturna\",\n \t\t\t\t      \"descripcion\": \"\"\n \t\t\t\t  },\n \t\t\t\t  \"sitios\": [\n \t\t\t\t      {\n \t\t\t\t          \"id\": 1,\n \t\t\t\t          \"created_at\": \"2017-08-30 18:31:56\",\n \t\t\t\t          \"updated_at\": \"2017-08-30 18:31:56\",\n \t\t\t\t          \"nombre\": \"casa tilson\",\n \t\t\t\t          \"descripcion\": \"casa\",\n \t\t\t\t          \"latitud\": \"1111\",\n           \t\t\t\t\"longitud\": \"2222\"\n \t\t\t\t      }\n \t\t\t\t  ]\n\t\t\t\t}",
           "type": "json"
         }
       ]
@@ -1462,6 +1469,13 @@
             "optional": false,
             "field": "nombre",
             "description": "<p>maxlength:190 required <em>not null</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id_categoria",
+            "description": "<p>maxlength:10 required <em>not null</em></p>"
           },
           {
             "group": "Parameter",

@@ -348,6 +348,7 @@ Route::post("login", "UsuariosController@login");
  * https://quehaypahacer.nabu.com.co/api/sitio
  * 
  * @apiParam {string} nombre maxlength:190 required *not null*
+  * @apiParam {string} id_categoria maxlength:10 required *not null*
  * @apiParam {text} descripcion maxlength:5000 *opcional*
  * @apiParam {string} latitud maxlength:190 *opcional*
  * @apiParam {string} longitud maxlength:190 *opcional*
@@ -651,7 +652,7 @@ Route::resource("evento", "EventoController");
   * @apiGroup Categorias
  * @apiDescription Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y
  * su ultima modificacion
- * @apiVersion 0.1.0
+ * @apiVersion 0.1.1
  * 
  * @apiExample Ejemplo de Uso:
  * https://quehaypahacer.nabu.com.co/api/categoria/1
@@ -661,16 +662,30 @@ Route::resource("evento", "EventoController");
  * @apiSuccess {string} descripcion Descripción de la categoria
  * @apiSuccess {DateTime} created_at fecha de creacion _format("YYYY-MM-dd HH:ii:ss")_
  * @apiSuccess {DateTime} Updated_at fecha de su ultima actualizacion _format("YYYY-MM-dd HH:ii:ss")_
- * 
+ * @apiSuccess {string[]} sitios Listado de sitios asociados a la categoria
+ *
  * @apiSuccessExample Ejemplo de Éxito:
  *      HTTP/1.1 200 OK
  *          {
- *              descripcion:"Plazuela",
- *              nombre:"Sao",
- *              id:1,
- *              updated_at:"2017-06-30 00:07:35",
- *              created_at:"2017-06-30 00:07:35"
- *          }
+*  				"categoria": {
+*  				      "id": 1,
+*  				      "created_at": "2017-08-30 18:25:24",
+*  				      "updated_at": "2017-08-30 18:25:24",
+*  				      "nombre": "Vida Nocturna",
+*  				      "descripcion": ""
+*  				  },
+*  				  "sitios": [
+*  				      {
+*  				          "id": 1,
+*  				          "created_at": "2017-08-30 18:31:56",
+*  				          "updated_at": "2017-08-30 18:31:56",
+*  				          "nombre": "casa tilson",
+*  				          "descripcion": "casa",
+*  				          "latitud": "1111",
+*            				"longitud": "2222"
+*  				      }
+*  				  ]
+*				}
  * 
  * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/categoria/1
  * 
