@@ -580,3 +580,102 @@ Route::post("reservar", "ReservaController@reservar");
  * @apiUse db
  */
 Route::resource("evento", "EventoController");
+
+
+
+/**
+ * @api {POST} /api/categoria Guardar Categoria
+ * @apiGroup Categorias
+ * @apiDescription Se crea una categoria para el listado. Para esto es necesario mandar token
+ * Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/categoria
+ * 
+ * @apiParam {string} nombre maxlength:190 required *not null*
+ * @apiParam {text} descripcion maxlength:5000 *opcional*
+ * 
+ * @apiSuccess {integer} id Id de la categoria
+ * @apiSuccess {string} nombre nombre de la categoria
+ * @apiSuccess {string} descripcion Descripción de la categoria
+ * @apiSuccess {DateTime} created_at fecha de creacion _format("YYYY-MM-dd HH:ii:ss")_
+ * @apiSuccess {DateTime} Updated_at fecha de su ultima actualizacion _format("YYYY-MM-dd HH:ii:ss")_
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          id:1,
+ *          nombre:"Nombre",
+ *          descripcion:"descripcion",
+ *          created_at:"2017-06-27 20:00:00",
+ *          updated_at:"2017-06-27 20:00:00"
+ *      }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/categoria
+ * 
+ * @apiError 401 Validación fallida
+ * @apiError 500 Error interno
+ * @apiError 501 No se registro
+ * 
+ */
+/**
+ * @api {GET} /api/categoria Obtener todas las categorias
+  * @apiGroup Categorias
+ * @apiDescription Listado de todas las categorias registradas
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/categoria
+ * 
+ * @apiSuccess {string} nombre nombre de la categoria
+ * @apiSuccess {string} descripcion Descripción de la categoria
+ * @apiSuccess {integer} id Id de la categoria
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *  [     
+ *      {
+ *          descripcion:"Plazuela",
+ *         	nombre:"Sao",
+ *          id:1
+ *      }
+ * ]
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/categoria
+ *  
+ * @apiUse db
+ */
+/**
+ * @api {GET} /api/categoria/{integer:id} Obtener una categoria
+  * @apiGroup Categorias
+ * @apiDescription Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y
+ * su ultima modificacion
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://quehaypahacer.nabu.com.co/api/categoria/1
+ * 
+ * @apiSuccess {integer} id Id de la categoria
+ * @apiSuccess {string} nombre nombre de la categoria
+ * @apiSuccess {string} descripcion Descripción de la categoria
+ * @apiSuccess {DateTime} created_at fecha de creacion _format("YYYY-MM-dd HH:ii:ss")_
+ * @apiSuccess {DateTime} Updated_at fecha de su ultima actualizacion _format("YYYY-MM-dd HH:ii:ss")_
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *          {
+ *              descripcion:"Plazuela",
+ *              nombre:"Sao",
+ *              id:1,
+ *              updated_at:"2017-06-30 00:07:35",
+ *              created_at:"2017-06-30 00:07:35"
+ *          }
+ * 
+ * @apiSampleRequest https://quehaypahacer.nabu.com.co/api/categoria/1
+ * 
+ * @apiError 404 Sitio no existe.
+ * 
+ * @apiUse db
+ */
+Route::resource("categoria", "CategoriasController");

@@ -1,5 +1,278 @@
 define({ "api": [
   {
+    "type": "GET",
+    "url": "/api/categoria",
+    "title": "Obtener todas las categorias",
+    "group": "Categorias",
+    "description": "<p>Listado de todas las categorias registradas</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/categoria",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>nombre de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>Descripción de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id de la categoria</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "     HTTP/1.1 200 OK\n [     \n     {\n         descripcion:\"Plazuela\",\n        \tnombre:\"Sao\",\n         id:1\n     }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/categoria"
+      }
+    ],
+    "filename": "routes/api.php",
+    "groupTitle": "Categorias",
+    "name": "GetApiCategoria",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "GET",
+    "url": "/api/categoria/{integer:id}",
+    "title": "Obtener una categoria",
+    "group": "Categorias",
+    "description": "<p>Cuando se pasa una ID, se muestra ademas de sus datos la fecha de creacion y su ultima modificacion</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/categoria/1",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>nombre de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>Descripción de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>fecha de creacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "Updated_at",
+            "description": "<p>fecha de su ultima actualizacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n    {\n        descripcion:\"Plazuela\",\n        nombre:\"Sao\",\n        id:1,\n        updated_at:\"2017-06-30 00:07:35\",\n        created_at:\"2017-06-30 00:07:35\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/categoria/1"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sitio no existe.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Categorias",
+    "name": "GetApiCategoriaIntegerId"
+  },
+  {
+    "type": "POST",
+    "url": "/api/categoria",
+    "title": "Guardar Categoria",
+    "group": "Categorias",
+    "description": "<p>Se crea una categoria para el listado. Para esto es necesario mandar token Y validar que tenga permisos. Por ahora cualquiera puede hacerlo, pero a futuro eso.</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://quehaypahacer.nabu.com.co/api/categoria",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>maxlength:190 required <em>not null</em></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "text",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>maxlength:5000 <em>opcional</em></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p>nombre de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "descripcion",
+            "description": "<p>Descripción de la categoria</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>fecha de creacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "Updated_at",
+            "description": "<p>fecha de su ultima actualizacion <em>format(&quot;YYYY-MM-dd HH:ii:ss&quot;)</em></p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    id:1,\n    nombre:\"Nombre\",\n    descripcion:\"descripcion\",\n    created_at:\"2017-06-27 20:00:00\",\n    updated_at:\"2017-06-27 20:00:00\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://quehaypahacer.nabu.com.co/api/categoria"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Validación fallida</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Error interno</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>No se registro</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Categorias",
+    "name": "PostApiCategoria"
+  },
+  {
     "type": "DELETE",
     "url": "/api/evento/{Number:ID}?token=$58c78c78c78d6cd67cd79",
     "title": "Eliminar un evento",
